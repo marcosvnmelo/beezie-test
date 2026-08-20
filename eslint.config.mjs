@@ -13,6 +13,24 @@ const eslintConfig = defineConfig([
     'build/**',
     'next-env.d.ts',
   ]),
+  {
+    files: [
+      '**/*.ts',
+      '**/*.tsx',
+      '**/*.cts',
+      '**/*.mts',
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.cjs',
+      '**/*.mjs',
+    ],
+    // Override or add rules here
+    rules: {
+      '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'error',
+    },
+  },
 ]);
 
 export default eslintConfig;

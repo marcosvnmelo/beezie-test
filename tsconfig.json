@@ -13,6 +13,20 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "noErrorTruncation": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
+    "allowImportingTsExtensions": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "erasableSyntaxOnly": true,
+    "exactOptionalPropertyTypes": false,
+    "verbatimModuleSyntax": true,
     "plugins": [
       {
         "name": "next"
