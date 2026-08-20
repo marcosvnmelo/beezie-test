@@ -56,7 +56,7 @@ export function HeaderNavigation() {
               {marketplaceNavigationItems.map((item) => (
                 <Link
                   key={item.name}
-                  className="relative isolate aspect-2/1 h-25 overflow-hidden rounded-[10px] bg-transparent px-2.5"
+                  className="relative isolate aspect-2/1 h-25 overflow-hidden rounded-lg bg-transparent px-2.5"
                   href={item.href}
                 >
                   <span className="text-xs font-semibold whitespace-nowrap text-black">
