@@ -1,5 +1,12 @@
 import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {/* config options here */};
+const isDev = process.env.NODE_ENV === 'development';
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: isDev ? [new URL('http://localhost:3000/**')] : [],
+    dangerouslyAllowLocalIP: isDev,
+  },
+};
 
 export default nextConfig;
