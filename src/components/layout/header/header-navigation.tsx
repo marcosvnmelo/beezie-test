@@ -44,7 +44,7 @@ const marketplaceNavigationItems: MarketplaceNavigationItem[] = [
 
 export function HeaderNavigation() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>

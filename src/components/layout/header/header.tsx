@@ -8,7 +8,7 @@ import { HeaderNavigation } from './header-navigation';
 
 export function Header() {
   return (
-    <header className="flex h-20 items-center justify-between px-12.5">
+    <header className="flex h-16 items-center justify-between px-4 md:h-20 md:px-12.5">
       <Logo />
 
       <HeaderNavigation />
@@ -22,8 +22,18 @@ function Logo() {
   return (
     <Link href="/claw">
       <Image
+        src="/logo-mobile.svg"
+        alt="Beezie Logo"
+        className="md:hidden"
+        width={22}
+        height={32}
+        priority
+        unoptimized
+      />
+      <Image
         src="/logo.svg"
         alt="Beezie Logo"
+        className="hidden md:block"
         width={94}
         height={40}
         priority
@@ -43,7 +53,7 @@ function UserArea() {
   const formattedBalance = formatBalance(userData.balance);
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="hidden items-center gap-4 md:flex">
       <div className="flex items-center gap-2.5 bg-[#1A1A1A] px-4 py-1.5">
         <WalletIcon className="size-4" />
 
