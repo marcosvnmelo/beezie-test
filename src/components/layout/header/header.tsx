@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { WalletIcon } from 'lucide-react';
 
 import { formatBalance } from '@/helpers/format-balance';
@@ -19,7 +20,7 @@ export function Header() {
 
 function Logo() {
   return (
-    <a href="/claw">
+    <Link href="/claw">
       <Image
         src="/logo.svg"
         alt="Beezie Logo"
@@ -28,7 +29,7 @@ function Logo() {
         priority
         unoptimized
       />
-    </a>
+    </Link>
   );
 }
 

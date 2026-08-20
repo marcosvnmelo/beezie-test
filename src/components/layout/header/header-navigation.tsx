@@ -54,7 +54,7 @@ export function HeaderNavigation() {
             </h2>
             <div className="grid grid-cols-2 gap-2">
               {marketplaceNavigationItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   className="relative isolate aspect-2/1 h-25 overflow-hidden rounded-[10px] bg-transparent px-2.5"
                   href={item.href}
@@ -69,7 +69,7 @@ export function HeaderNavigation() {
                     height={100}
                     className="absolute inset-0 -z-1 object-cover"
                   />
-                </a>
+                </Link>
               ))}
             </div>
           </NavigationMenuContent>
