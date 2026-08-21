@@ -15,7 +15,7 @@ export const claws: Claw[] = [
         fallbackImageUrl: '/claw/videos/idle/fallback.webp',
       },
       boxIcon: {
-        url: '/claw/crate-image/beezie30-create.avif',
+        url: '/claw/crate-image/beezie30-crate.avif',
       },
     },
     validations: {
@@ -36,7 +36,7 @@ export const claws: Claw[] = [
         fallbackImageUrl: '/claw/videos/idle/fallback.webp',
       },
       boxIcon: {
-        url: '/claw/crate-image/beezie50-create.avif',
+        url: '/claw/crate-image/beezie50-crate.avif',
       },
     },
     validations: {
@@ -57,7 +57,7 @@ export const claws: Claw[] = [
         fallbackImageUrl: '/claw/videos/idle/fallback.webp',
       },
       boxIcon: {
-        url: '/claw/crate-image/beezie250-create.avif',
+        url: '/claw/crate-image/beezie250-crate.avif',
       },
     },
     validations: {
@@ -78,7 +78,7 @@ export const claws: Claw[] = [
         fallbackImageUrl: '/claw/videos/idle/fallback.webp',
       },
       boxIcon: {
-        url: '/claw/crate-image/beezie500-create.avif',
+        url: '/claw/crate-image/beezie500-crate.avif',
       },
     },
     validations: {
