@@ -1,6 +1,15 @@
 import { cn } from '@/lib/utils';
 
-import type { Odd, OddType } from '../schemas/odds';
+import type { Odd } from '../schemas/odds';
+import { OddType } from '../schemas/odds';
+
+export const oddColorMap: Record<OddType, string> = {
+  'ultra-rare': cn('[--color-odd:var(--primary)]'),
+  'rare': cn('[--color-odd:var(--color-purple-400)]'),
+  'uncommon': cn('[--color-odd:var(--color-emerald-300)]'),
+  'common': cn('[--color-odd:var(--color-blue-400)]'),
+  'base': cn('[--color-odd:var(--muted-foreground)]'),
+};
 
 const createOdds = <T extends Odd[]>(
   arr: T & (OddType extends T[number]['type'] ? T : never),
@@ -8,28 +17,28 @@ const createOdds = <T extends Odd[]>(
 
 export const odds = createOdds([
   {
-    type: 'ultra-rare',
+    type: OddType['ultra-rare'],
     name: 'Ultra-Rare',
-    colorClassName: cn('[--color-odd:var(--primary)]'),
+    colorClassName: oddColorMap[OddType['ultra-rare']],
   },
   {
-    type: 'rare',
+    type: OddType.rare,
     name: 'Rare',
-    colorClassName: cn('[--color-odd:var(--color-purple-400)]'),
+    colorClassName: oddColorMap[OddType.rare],
   },
   {
-    type: 'uncommon',
+    type: OddType.uncommon,
     name: 'Uncommon',
-    colorClassName: cn('[--color-odd:var(--color-emerald-300)]'),
+    colorClassName: oddColorMap[OddType.uncommon],
   },
   {
-    type: 'common',
+    type: OddType.common,
     name: 'Common',
-    colorClassName: cn('[--color-odd:var(--color-blue-400)]'),
+    colorClassName: oddColorMap[OddType.common],
   },
   {
-    type: 'base',
+    type: OddType.base,
     name: 'Base',
-    colorClassName: cn('[--color-odd:var(--muted-foreground)]'),
+    colorClassName: oddColorMap[OddType.base],
   },
 ]);

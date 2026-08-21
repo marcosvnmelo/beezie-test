@@ -1,5 +1,6 @@
 import { ClawCard } from '@/modules/claw/components/cards/claw-card/claw-card';
 import { IdleVideoCard } from '@/modules/claw/components/cards/idle-video-card';
+import { TopItemsCard } from '@/modules/claw/components/cards/top-items-card/top-items-card';
 import { claws } from '@/modules/claw/constants/claws';
 
 export default function ClawPage() {
@@ -12,6 +13,8 @@ export default function ClawPage() {
         <IdleVideoCard claw={claw} />
 
         <ClawCard claw={claw} />
+
+        <TopItemsCard />
       </div>
     </main>
   );

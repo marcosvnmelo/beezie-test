@@ -33,14 +33,15 @@ function CrateCard(props: Pick<CrateCardsProps, 'claw'>) {
     <Button
       variant="link"
       className="block size-auto border border-muted-foreground/25 bg-secondary p-4 text-center hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]"
+      nativeButton={false}
       render={<Link href={`/claw/${props.claw.id}`} />}
     >
       <Image
         src={props.claw.medias.boxIcon.url}
         alt={`${props.claw.name} crate`}
         width={40}
-        height={40}
-        className="mx-auto mb-2"
+        height={32}
+        className="mx-auto mb-2 shrink-0"
       />
       <p className="mb-1 text-sm leading-4 font-semibold text-foreground md:text-base">
         {formattedPrice}

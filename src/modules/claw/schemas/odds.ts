@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-const oddTypeSchema = z.enum(['ultra-rare', 'rare', 'uncommon', 'common', 'base']);
+export const oddTypeSchema = z.enum(['ultra-rare', 'rare', 'uncommon', 'common', 'base']);
+export const OddType = oddTypeSchema.enum;
 export type OddType = z.infer<typeof oddTypeSchema>;
 
 export const oddSchema = z.object({
