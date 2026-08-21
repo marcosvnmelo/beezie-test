@@ -27,7 +27,7 @@ export function QuantityField(props: QuantityFieldProps) {
     <Field
       data-invalid={isInvalid}
       className={cn(
-        'bg-secondary grid grid-cols-3 gap-0 overflow-hidden rounded-lg',
+        'grid grid-cols-3 gap-0 overflow-hidden rounded-lg bg-secondary',
         props.fieldClassName,
       )}
     >
@@ -35,7 +35,7 @@ export function QuantityField(props: QuantityFieldProps) {
         id={`${inputId}-minus`}
         type="button"
         variant="secondary"
-        className="hover:bg-secondary aspect-square size-auto p-3"
+        className="aspect-square size-auto p-3 hover:bg-secondary"
         onClick={() => field.handleChange(quantity - 1)}
         disabled={quantity <= min}
       >
@@ -51,7 +51,7 @@ export function QuantityField(props: QuantityFieldProps) {
         id={`${inputId}-plus`}
         type="button"
         variant="secondary"
-        className="hover:bg-secondary aspect-square size-auto p-3"
+        className="aspect-square size-auto p-3 hover:bg-secondary"
         onClick={() => field.handleChange(quantity + 1)}
         disabled={quantity >= max}
       >

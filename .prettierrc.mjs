@@ -9,6 +9,7 @@ const config = {
   quoteProps: 'consistent',
   plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
   tailwindFunctions: ['cn', 'cva'],
+  tailwindStylesheet: './src/app/globals.css',
   importOrder: [
     '<TYPES>',
     '^(react/(.*)$)|^(react$)|^(react-native(.*)$)',
