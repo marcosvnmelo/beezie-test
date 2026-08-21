@@ -8,7 +8,13 @@ import { cn } from '@/lib/utils';
 import { oddColorMap } from '@/modules/claw/constants/odds';
 import { generateItems } from '@/modules/claw/helpers/generate-items';
 
-const mockData: Item[] = generateItems(40);
+const mockData: Item[] = generateItems({
+  amount: 40,
+  nameGenerator: ({ randomYear, randomNumber, randomCondition }) => {
+    return `${randomYear} Legendary Collection Mewtwo #${randomNumber} CGC ${randomCondition}`;
+  },
+  imageUrl: 'http://localhost:3000/mock/top-item.webp',
+});
 
 export function TopItemsCard() {
   return (

@@ -1,5 +1,6 @@
 import { ClawCard } from '@/modules/claw/components/cards/claw-card/claw-card';
 import { IdleVideoCard } from '@/modules/claw/components/cards/idle-video-card';
+import { RecentPullsCard } from '@/modules/claw/components/cards/recent-pulls-card';
 import { TopItemsCard } from '@/modules/claw/components/cards/top-items-card/top-items-card';
 import { claws } from '@/modules/claw/constants/claws';
 
@@ -15,6 +16,8 @@ export default function ClawPage() {
         <ClawCard claw={claw} />
 
         <TopItemsCard />
+
+        <RecentPullsCard />
       </div>
     </main>
   );

@@ -8,6 +8,9 @@ export const itemSchema = z.object({
   fmv: z.number().describe('Fair Market Value'),
   image: z.string(),
   oddType: oddTypeSchema,
+  owner: z.object({
+    name: z.string(),
+  }),
 });
 
 export type Item = z.infer<typeof itemSchema>;
