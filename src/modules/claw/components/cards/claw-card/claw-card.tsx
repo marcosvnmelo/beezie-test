@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
-import type { Claw } from '../../../schemas/claws';
+import type { Claw } from '../../../schemas/claws.schema';
 import { ClawForm } from '../../form/claw-form';
 import { ClawOdds } from './claw-odds/claw-odds';
 import { CrateCards } from './crate-cards';

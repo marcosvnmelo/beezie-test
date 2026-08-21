@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { Claw } from '@/modules/claw/schemas/claws';
+import type { Claw } from '@/modules/claw/schemas/claws.schema';
 
 interface IdleVideoCardProps {
   claw: Claw;

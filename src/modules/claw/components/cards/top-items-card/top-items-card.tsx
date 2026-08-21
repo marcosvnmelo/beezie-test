@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { Item } from '@/modules/claw/schemas/item';
+import type { Item } from '@/modules/claw/schemas/item.schema';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';

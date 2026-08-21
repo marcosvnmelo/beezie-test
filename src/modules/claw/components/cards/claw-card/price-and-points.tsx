@@ -1,4 +1,4 @@
-import type { Claw } from '@/modules/claw/schemas/claws';
+import type { Claw } from '@/modules/claw/schemas/claws.schema';
 import { formatCurrency } from '@/helpers/format-currency';
 
 interface PriceAndPointsProps {

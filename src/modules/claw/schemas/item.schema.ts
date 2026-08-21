@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { oddTypeSchema } from './odds';
+import { oddTypeSchema } from './odds.schema';
 
 export const itemSchema = z.object({
   id: z.string(),

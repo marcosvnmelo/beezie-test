@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
-import type { Odd } from '../schemas/odds';
-import { OddType } from '../schemas/odds';
+import type { Odd } from '../schemas/odds.schema';
+import { OddType } from '../schemas/odds.schema';
 
 export const oddColorMap: Record<OddType, string> = {
   'ultra-rare': cn('[--color-odd:var(--primary)]'),

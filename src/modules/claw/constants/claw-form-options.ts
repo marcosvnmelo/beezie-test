@@ -1,6 +1,6 @@
 import { formOptions } from '@tanstack/react-form-nextjs';
 
-import type { ClawForm } from '../schemas/claw-form';
+import type { ClawForm } from '../schemas/claw-form.schema';
 
 export const clawFormOpts = formOptions({
   defaultValues: {

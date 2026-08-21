@@ -1,4 +1,4 @@
-import type { Claw } from '../schemas/claws';
+import type { Claw } from '../schemas/claws.schema';
 
 export const claws: Claw[] = [
   {

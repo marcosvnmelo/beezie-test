@@ -5,7 +5,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 
-import type { Item } from '../../schemas/item';
+import type { Item } from '../../schemas/item.schema';
 import { oddColorMap } from '../../constants/odds';
 import { generateItems } from '../../helpers/generate-items';
 

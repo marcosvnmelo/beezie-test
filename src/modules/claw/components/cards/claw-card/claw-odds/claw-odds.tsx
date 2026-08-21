@@ -1,4 +1,4 @@
-import type { Odd } from '@/modules/claw/schemas/odds';
+import type { Odd } from '@/modules/claw/schemas/odds.schema';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 import { odds } from '@/modules/claw/constants/odds';

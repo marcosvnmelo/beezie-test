@@ -10,7 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
-import { ClawFormSubmitAction } from '@/modules/claw/schemas/claw-form';
+import { ClawFormSubmitAction } from '@/modules/claw/schemas/claw-form.schema';
 
 export const PromotionCodeSection = withClawForm({
   ...clawFormOpts,

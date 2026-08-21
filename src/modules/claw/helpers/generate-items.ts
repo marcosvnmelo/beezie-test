@@ -1,7 +1,7 @@
 import { genRandomNumber } from '@/helpers/generate-random-number';
 
-import type { Item } from '../schemas/item';
-import { itemSchema } from '../schemas/item';
+import type { Item } from '../schemas/item.schema';
+import { itemSchema } from '../schemas/item.schema';
 
 interface GenerateItemsOptions {
   amount: number;

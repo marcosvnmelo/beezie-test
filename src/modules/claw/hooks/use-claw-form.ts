@@ -6,7 +6,7 @@ import { TextField } from '@/modules/claw/components/form/fields/text-field';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { fieldContext, formContext } from '@/modules/claw/contexts/claw-form-context';
 
-import { ClawFormSubmitAction } from '../schemas/claw-form';
+import { ClawFormSubmitAction } from '../schemas/claw-form.schema';
 
 export const {
   useAppForm,

@@ -2,7 +2,7 @@
 
 import { useSelector } from '@tanstack/react-form-nextjs';
 
-import type { Claw } from '../../schemas/claws';
+import type { Claw } from '../../schemas/claws.schema';
 import { useClawForm } from '../../hooks/use-claw-form';
 import { PromotionCodeSection } from './sections/promotion-code-section';
 import { QuantitySection } from './sections/quantity-section';

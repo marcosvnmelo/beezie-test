@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { Claw } from '@/modules/claw/schemas/claws';
+import type { Claw } from '@/modules/claw/schemas/claws.schema';
 import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/helpers/format-currency';
 import { claws } from '@/modules/claw/constants/claws';
