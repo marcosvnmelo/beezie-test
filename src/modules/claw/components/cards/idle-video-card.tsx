@@ -8,7 +8,7 @@ interface IdleVideoCardProps {
 
 export function IdleVideoCard(props: IdleVideoCardProps) {
   return (
-    <div className="relative aspect-square">
+    <div className="relative">
       <Image
         src={props.claw.medias.idleVideo.fallbackImageUrl}
         alt=""
@@ -25,7 +25,7 @@ export function IdleVideoCard(props: IdleVideoCardProps) {
         preload="auto"
         poster={props.claw.medias.idleVideo.fallbackImageUrl}
         aria-hidden="true"
-        className="relative z-2 aspect-square size-full rounded-[calc(var(--radius)*2)] object-cover"
+        className="relative z-2 size-full rounded-[calc(var(--radius)*2)] object-cover"
       >
         <source src={props.claw.medias.idleVideo.url} type="video/mp4" />
       </video>
