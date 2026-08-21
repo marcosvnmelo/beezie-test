@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import type { Claw } from '@/modules/claw/schemas/claws';
 import { Button } from '@/components/ui/button';
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 import { claws } from '@/modules/claw/constants/claws';
 
 interface CrateCardsProps {
@@ -28,7 +28,7 @@ export function CrateCards(props: CrateCardsProps) {
 }
 
 function CrateCard(props: Pick<CrateCardsProps, 'claw'>) {
-  const formattedPrice = formatBalance(props.claw.values.price);
+  const formattedPrice = formatCurrency(props.claw.values.price);
   return (
     <Button
       variant="link"

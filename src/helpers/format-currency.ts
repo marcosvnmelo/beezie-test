@@ -1,4 +1,4 @@
-export function formatBalance(balance: number) {
+export function formatCurrency(balance: number) {
   return balance.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',

@@ -1,5 +1,5 @@
 import type { Odd } from '@/modules/claw/schemas/odds';
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 import { odds } from '@/modules/claw/constants/odds';
 
@@ -8,7 +8,7 @@ import { OddsHelpDialog } from './odds-help-dialog';
 
 export function ClawOdds() {
   // TODO: Get average value from server
-  const formattedAverage = formatBalance(505);
+  const formattedAverage = formatCurrency(505);
 
   return (
     <div className="space-y-2">

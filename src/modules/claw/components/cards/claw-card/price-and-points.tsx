@@ -1,12 +1,12 @@
 import type { Claw } from '@/modules/claw/schemas/claws';
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 
 interface PriceAndPointsProps {
   claw: Claw;
 }
 
 export function PriceAndPoints(props: Pick<PriceAndPointsProps, 'claw'>) {
-  const formattedPrice = formatBalance(props.claw.values.price);
+  const formattedPrice = formatCurrency(props.claw.values.price);
 
   return (
     <p className="text-xl leading-7 font-semibold md:text-2xl md:leading-8">

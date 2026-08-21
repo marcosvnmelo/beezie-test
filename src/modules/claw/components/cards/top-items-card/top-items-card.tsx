@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { Item } from '@/modules/claw/schemas/item';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 import { oddColorMap } from '@/modules/claw/constants/odds';
 import { generateItems } from '@/modules/claw/helpers/generate-items';
@@ -38,7 +38,7 @@ interface TopItemCardProps {
 }
 
 function TopItemCard({ item }: TopItemCardProps) {
-  const formattedFMV = formatBalance(item.fmv);
+  const formattedFMV = formatCurrency(item.fmv);
 
   return (
     <div className="flex flex-col p-1">

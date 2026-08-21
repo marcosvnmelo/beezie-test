@@ -1,6 +1,6 @@
 import { DollarSignIcon } from 'lucide-react';
 
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 
 import { GradientCard } from './gradient-card';
 import { HelpDialog } from './help-dialog';
@@ -8,12 +8,12 @@ import { HelpDialog } from './help-dialog';
 const gradientCardRows = [
   {
     label: 'Claw Price',
-    value: formatBalance(30),
+    value: formatCurrency(30),
     valueColor: 'white' as const,
   },
   {
     label: 'Average Value',
-    value: formatBalance(34),
+    value: formatCurrency(34),
     valueColor: 'green' as const,
   },
 ];

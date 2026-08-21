@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 
 import type { Item } from '../../schemas/item';
@@ -38,7 +38,7 @@ interface RecentPullItemCardProps {
 }
 
 function RecentPullItemCard({ item }: RecentPullItemCardProps) {
-  const formattedFMV = formatBalance(item.fmv);
+  const formattedFMV = formatCurrency(item.fmv);
 
   return (
     <div className="flex items-center gap-4 rounded-lg bg-secondary p-2.5">

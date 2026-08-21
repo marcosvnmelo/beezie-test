@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { WalletIcon } from 'lucide-react';
 
-import { formatBalance } from '@/helpers/format-balance';
+import { formatCurrency } from '@/helpers/format-currency';
 
 import { HeaderNavigation } from './header-navigation';
 
@@ -50,7 +50,7 @@ function UserArea() {
     image: 'http://localhost:3000/mock/avatar.jpg',
   };
 
-  const formattedBalance = formatBalance(userData.balance);
+  const formattedBalance = formatCurrency(userData.balance);
 
   return (
     <div className="hidden items-center gap-4 md:flex">
