@@ -7,6 +7,7 @@ export const clawFormOpts = formOptions({
     quantityStep: {
       quantity: 1,
       promotionCode: '',
+      isPromotionCodeApplied: false,
     },
     reviewAndPayStep: {
       tab: 'wallet',

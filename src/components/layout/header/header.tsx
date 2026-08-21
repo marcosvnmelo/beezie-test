@@ -3,12 +3,19 @@ import Link from 'next/link';
 import { WalletIcon } from 'lucide-react';
 
 import { formatCurrency } from '@/helpers/format-currency';
+import { cn } from '@/lib/utils';
 
 import { HeaderNavigation } from './header-navigation';
 
 export function Header() {
   return (
-    <header className="flex h-16 items-center justify-between px-4 md:h-20 md:px-12.5">
+    <header
+      className={cn(
+        'grid h-16 items-center justify-between px-4 md:h-20 md:px-12.5',
+        'grid-cols-[minmax(auto,1fr)_auto_minmax(auto,1fr)]',
+        '*:last:justify-end',
+      )}
+    >
       <Logo />
 
       <HeaderNavigation />
