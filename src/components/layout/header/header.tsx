@@ -57,7 +57,7 @@ function UserArea() {
       <div className="flex items-center gap-2.5 bg-[#1A1A1A] px-4 py-1.5">
         <WalletIcon className="size-4" />
 
-        <span className="text-sm font-medium">#1A1A1A{formattedBalance}</span>
+        <span className="text-sm font-medium">{formattedBalance}</span>
       </div>
 
       <Image
