@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 
@@ -24,10 +25,14 @@ export function RecentPullsCard() {
           Recent Pulls
         </CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-2.5">
-        {mockData.map((item) => (
-          <RecentPullItemCard key={item.id} item={item} />
-        ))}
+      <CardContent>
+        <ScrollArea className="max-h-160">
+          <div className="grid gap-2.5">
+            {mockData.map((item) => (
+              <RecentPullItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </ScrollArea>
       </CardContent>
     </Card>
   );

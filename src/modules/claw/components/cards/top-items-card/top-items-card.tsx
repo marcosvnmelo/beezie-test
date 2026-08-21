@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import type { Item } from '@/modules/claw/schemas/item';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
@@ -24,10 +25,14 @@ export function TopItemsCard() {
           Top Items
         </CardTitle>
       </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-2 md:grid-cols-3">
-        {mockData.map((item) => (
-          <TopItemCard key={item.id} item={item} />
-        ))}
+      <CardContent>
+        <ScrollArea className="max-h-160">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
+            {mockData.map((item) => (
+              <TopItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </ScrollArea>
       </CardContent>
     </Card>
   );
