@@ -1,0 +1,53 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
+import type { Claw } from '@/modules/claw/schemas/claws';
+import { Button } from '@/components/ui/button';
+import { formatBalance } from '@/helpers/format-balance';
+import { claws } from '@/modules/claw/constants/claws';
+
+interface CrateCardsProps {
+  claw: Claw;
+}
+
+export function CrateCards(props: CrateCardsProps) {
+  return (
+    <div className="flex w-full flex-col gap-3 md:gap-2">
+      <h2 className="text-sm leading-4 font-medium md:text-base md:leading-5.25">
+        More Claw Machines:
+      </h2>
+      <div className="grid grid-cols-3 gap-4">
+        {claws
+          .filter((c) => c.id !== props.claw.id)
+          .map((claw) => (
+            <CrateCard key={claw.id} claw={claw} />
+          ))}
+      </div>
+    </div>
+  );
+}
+
+function CrateCard(props: Pick<CrateCardsProps, 'claw'>) {
+  const formattedPrice = formatBalance(props.claw.values.price);
+  return (
+    <Button
+      variant="link"
+      className="block size-auto border border-muted-foreground/25 bg-secondary p-4 text-center hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]"
+      render={<Link href={`/claw/${props.claw.id}`} />}
+    >
+      <Image
+        src={props.claw.medias.boxIcon.url}
+        alt={`${props.claw.name} crate`}
+        width={40}
+        height={40}
+        className="mx-auto mb-2"
+      />
+      <p className="mb-1 text-base leading-4 font-semibold text-foreground">
+        {formattedPrice}
+      </p>
+      <p className="text-sm font-medium text-muted-foreground">
+        {props.claw.name}
+      </p>
+    </Button>
+  );
+}
