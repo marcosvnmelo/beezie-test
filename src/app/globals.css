@@ -144,5 +144,5 @@
 }
 
 @utility bg-card-gradient {
-  @apply bg-linear-[163deg] from-[#232323] from-0% via-[#1B1B1B] via-50% to-[#1A1A1A] to-100%;
+  @apply bg-linear-to-br from-[#232323] from-0% via-[#1B1B1B] via-50% to-[#1A1A1A] to-100%;
 }

@@ -12,8 +12,7 @@ export const ReviewAndPayStepTabs = {
   Wallet: 'Wallet',
   Card: 'Card',
 } as const;
-const reviewAndPayStepTabs = z.enum(ReviewAndPayStepTabs);
-export type ReviewAndPayStepTabs = z.infer<typeof reviewAndPayStepTabs>;
+export type ReviewAndPayStepTabs = keyof typeof ReviewAndPayStepTabs;
 
 interface CreateClawFormProps {
   quantityStep: {
@@ -32,19 +31,9 @@ export function createClawFormSchema({ quantityStep }: CreateClawFormProps) {
       promotionCode: z.string().or(z.literal('')),
       isPromotionCodeApplied: z.boolean().default(false),
     }),
-    reviewAndPayStep: z.discriminatedUnion('tab', [
-      z.object({
-        tab: reviewAndPayStepTabs.extract([ReviewAndPayStepTabs.Wallet]),
-        paymentMethod: paymentMethodsSchema.extract([
-          PaymentMethods.BeezieWallet,
-          PaymentMethods.ExternalWallet,
-        ]),
-      }),
-      z.object({
-        tab: reviewAndPayStepTabs.extract([ReviewAndPayStepTabs.Card]),
-        paymentMethod: paymentMethodsSchema.extract([PaymentMethods.Card]),
-      }),
-    ]),
+    reviewAndPayStep: z.object({
+      paymentMethod: paymentMethodsSchema,
+    }),
   });
 }
 
