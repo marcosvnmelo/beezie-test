@@ -142,3 +142,7 @@
     @apply font-sans;
   }
 }
+
+@utility bg-card-gradient {
+  @apply bg-linear-[163deg] from-[#232323] from-0% via-[#1B1B1B] via-50% to-[#1A1A1A] to-100%;
+}
