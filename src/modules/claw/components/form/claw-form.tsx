@@ -1,9 +1,9 @@
 'use client';
 
-import { useSelector } from '@tanstack/react-form-nextjs';
+import type { Claw } from '@/modules/claw/schemas/claws.schema';
+import { useClawForm } from '@/modules/claw/hooks/use-claw-form';
 
-import type { Claw } from '../../schemas/claws.schema';
-import { useClawForm } from '../../hooks/use-claw-form';
+import { PaymentPopup } from './payment-popup/payment-popup';
 import { PromotionCodeSection } from './sections/promotion-code-section';
 import { QuantitySection } from './sections/quantity-section';
 
@@ -12,9 +12,7 @@ interface ClawFormProps {
 }
 
 export function ClawForm(props: ClawFormProps) {
-  const form = useClawForm();
-
-  const formErrors = useSelector(form.store, (formState) => formState.errors);
+  const { form, step } = useClawForm();
 
   return (
     <form
@@ -23,17 +21,15 @@ export function ClawForm(props: ClawFormProps) {
         e.stopPropagation();
       }}
     >
-      {formErrors.map((error) => (
-        <p key={error as string}>{error}</p>
-      ))}
       <form.AppForm>
         <QuantitySection
           form={form}
-          fields="quantityStep"
           maxQuantity={props.claw.validations.maxQuantity}
         />
 
         <PromotionCodeSection form={form} />
+
+        <PaymentPopup form={form} step={step} />
       </form.AppForm>
     </form>
   );

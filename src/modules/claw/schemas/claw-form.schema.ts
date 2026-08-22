@@ -1,11 +1,18 @@
 import { z } from 'zod';
 
-const paymentMethodsSchema = z.enum(['BeezieWallet', 'ExternalWallet', 'Card']);
-export const PaymentMethods = paymentMethodsSchema.enum;
+export const PaymentMethods = {
+  BeezieWallet: 'BeezieWallet',
+  ExternalWallet: 'ExternalWallet',
+  Card: 'Card',
+} as const;
+const paymentMethodsSchema = z.enum(PaymentMethods);
 export type PaymentMethods = z.infer<typeof paymentMethodsSchema>;
 
-const reviewAndPayStepTabs = z.enum(['Wallet', 'Card']);
-export const ReviewAndPayStepTabs = reviewAndPayStepTabs.enum;
+export const ReviewAndPayStepTabs = {
+  Wallet: 'Wallet',
+  Card: 'Card',
+} as const;
+const reviewAndPayStepTabs = z.enum(ReviewAndPayStepTabs);
 export type ReviewAndPayStepTabs = z.infer<typeof reviewAndPayStepTabs>;
 
 interface CreateClawFormProps {
@@ -47,5 +54,6 @@ export const ClawFormSubmitAction = {
   ApplyPromoCode: 'ApplyPromoCode',
   ClearPromotionCode: 'ClearPromotionCode',
   OpenPaymentReview: 'OpenPaymentReview',
+  ClosePaymentReview: 'ClosePaymentReview',
 } as const;
 export type ClawFormSubmitAction = keyof typeof ClawFormSubmitAction;
