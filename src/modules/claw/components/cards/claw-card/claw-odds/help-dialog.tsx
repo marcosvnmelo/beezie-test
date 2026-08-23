@@ -26,6 +26,7 @@ export function HelpDialog(props: HelpDialogProps) {
         render={
           <Button
             type="button"
+            data-slot="dialog-trigger"
             variant="ghost"
             size="icon-xs"
             className="size-auto rounded-full p-0"

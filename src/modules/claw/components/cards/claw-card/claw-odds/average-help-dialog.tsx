@@ -9,12 +9,10 @@ const gradientCardRows = [
   {
     label: 'Claw Price',
     value: formatCurrency(30),
-    valueColor: 'white' as const,
   },
   {
     label: 'Average Value',
     value: formatCurrency(34),
-    valueColor: 'green' as const,
   },
 ];
 

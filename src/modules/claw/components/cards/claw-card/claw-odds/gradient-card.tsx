@@ -1,10 +1,8 @@
 import { Card } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
 
 interface GradientCardRow {
   label: string;
   value: string;
-  valueColor: 'white' | 'green';
 }
 
 interface GradientCardProps {
@@ -22,14 +20,7 @@ export function GradientCard(props: GradientCardProps) {
           <span className="text-xs leading-4 text-muted-foreground">
             {row.label}
           </span>
-          <span
-            className={cn(
-              'text-sm leading-5 font-medium',
-              row.valueColor === 'green' && 'text-emerald-500',
-            )}
-          >
-            {row.value}
-          </span>
+          <span className="text-sm leading-5 font-medium">{row.value}</span>
         </div>
       ))}
     </Card>
