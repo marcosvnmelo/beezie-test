@@ -5,7 +5,7 @@ export const PaymentMethods = {
   ExternalWallet: 'ExternalWallet',
   Card: 'Card',
 } as const;
-const paymentMethodsSchema = z.enum(PaymentMethods);
+export const paymentMethodsSchema = z.enum(PaymentMethods);
 export type PaymentMethods = z.infer<typeof paymentMethodsSchema>;
 
 export const ReviewAndPayStepTabs = {

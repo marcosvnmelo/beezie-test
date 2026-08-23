@@ -1,10 +1,23 @@
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
-import { claws } from '@/modules/claw/constants/claws';
-import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
 import {
-  ClawFormSubmitAction,
+  Field,
+  FieldContent,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+  FieldTitle,
+} from '@/components/ui/field';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { formatCurrency } from '@/helpers/format-currency';
+import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
+import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
+import { useClawSuspenseQuery } from '@/modules/claw/hooks/use-claw-suspense-query';
+import { useWalletsSuspenseQuery } from '@/modules/claw/hooks/use-wallets-suspense-query';
+import {
+  PaymentMethods,
+  paymentMethodsSchema,
   ReviewAndPayStepTabs,
 } from '@/modules/claw/schemas/claw-form.schema';
 
@@ -13,8 +26,9 @@ import { OrderSummaryCard } from './order-summary-card';
 export const MobileContent = withClawForm({
   ...clawFormOpts,
   render: function Render({ form }) {
-    // TODO: Get claw from query params
-    const claw = claws[0]!;
+    const { claw } = useClawSuspenseQuery();
+
+    const { wallets } = useWalletsSuspenseQuery();
 
     return (
       <form
@@ -27,6 +41,22 @@ export const MobileContent = withClawForm({
         <Tabs
           defaultValue={ReviewAndPayStepTabs.Wallet}
           className="flex-row gap-6"
+          onValueChange={(value) => {
+            switch (value) {
+              case ReviewAndPayStepTabs.Wallet:
+                form.setFieldValue(
+                  'reviewAndPayStep.paymentMethod',
+                  PaymentMethods.BeezieWallet,
+                );
+                break;
+              case ReviewAndPayStepTabs.Card:
+                form.setFieldValue(
+                  'reviewAndPayStep.paymentMethod',
+                  PaymentMethods.Card,
+                );
+                break;
+            }
+          }}
         >
           <TabsList variant="beezie">
             <TabsTrigger value={ReviewAndPayStepTabs.Wallet} variant="beezie">
@@ -43,19 +73,63 @@ export const MobileContent = withClawForm({
             {(quantity) => <OrderSummaryCard claw={claw} quantity={quantity} />}
           </form.Subscribe>
 
-          <TabsContent value={ReviewAndPayStepTabs.Wallet}></TabsContent>
-          <TabsContent value={ReviewAndPayStepTabs.Card}></TabsContent>
+          <TabsContent value={ReviewAndPayStepTabs.Wallet}>
+            <FieldGroup>
+              <form.Field name="reviewAndPayStep.paymentMethod">
+                {(field) => (
+                  <FieldSet className="grid grid-rows-subgrid">
+                    <FieldLegend variant="label" className="mb-2.5">
+                      Choose Wallet
+                    </FieldLegend>
+                    <RadioGroup
+                      name={field.name}
+                      value={field.state.value}
+                      onValueChange={field.handleChange}
+                      className="grid grid-cols-2"
+                    >
+                      {paymentMethodsSchema.options
+                        .filter((pm) => pm !== PaymentMethods.Card)
+                        .map((pm) => (
+                          <FieldLabel
+                            key={pm}
+                            htmlFor={`${field.name}-${pm}`}
+                            variant="beezie"
+                          >
+                            <Field orientation="horizontal">
+                              <RadioGroupItem
+                                value={pm}
+                                id={`${field.name}-${pm}`}
+                                variant="beezie"
+                              />
+                              <FieldContent>
+                                <FieldTitle className="flex-col items-start">
+                                  {wallets[pm].name}
+                                  <span>
+                                    {formatCurrency(wallets[pm].balance!)}
+                                  </span>
+                                </FieldTitle>
+                              </FieldContent>
+                            </Field>
+                          </FieldLabel>
+                        ))}
+                    </RadioGroup>
+                  </FieldSet>
+                )}
+              </form.Field>
+            </FieldGroup>
+          </TabsContent>
+          <TabsContent value={ReviewAndPayStepTabs.Card}>
+            <div className="flex h-32 w-full items-center justify-center text-sm font-medium text-muted-foreground">
+              <span>Coinflow widget</span>
+            </div>
+          </TabsContent>
         </Tabs>
 
         <Button
           type="submit"
           size="lg"
           className="h-12"
-          onClick={() =>
-            form.handleSubmit({
-              submitAction: ClawFormSubmitAction.OpenPaymentReview,
-            })
-          }
+          onClick={() => form.handleSubmit()}
         >
           Confirm
         </Button>

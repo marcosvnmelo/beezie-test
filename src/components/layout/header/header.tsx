@@ -12,7 +12,7 @@ export function Header() {
     <header
       className={cn(
         'grid h-16 items-center justify-between px-4 md:h-20 md:px-12.5',
-        'grid-cols-[minmax(auto,1fr)_auto_minmax(auto,1fr)]',
+        'grid-cols-[1fr_max-content_1fr]',
         '*:last:justify-end',
       )}
     >

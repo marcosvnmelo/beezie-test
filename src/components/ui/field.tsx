@@ -31,7 +31,7 @@ function FieldLegend({
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
-        'mb-3 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base',
+        'mb-3 font-medium data-[variant=label]:text-sm data-[variant=label]:leading-none data-[variant=legend]:text-base',
         className,
       )}
       {...props}
@@ -99,18 +99,37 @@ function FieldContent({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
+const fieldLabelVariants = cva(
+  cn(
+    'group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-3 has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/50 *:data-[slot=field]:p-3',
+    'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
+  ),
+  {
+    variants: {
+      variant: {
+        default:
+          'has-data-checked:border-primary/30 has-data-checked:bg-primary/5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10',
+        beezie: cn(
+          'justify-center has-[>[data-slot=field]]:has-data-checked:border-2 dark:has-data-checked:border-primary',
+        ),
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+);
+
 function FieldLabel({
   className,
+  variant = 'default',
   ...props
-}: React.ComponentProps<typeof Label>) {
+}: React.ComponentProps<typeof Label> &
+  VariantProps<typeof fieldLabelVariants>) {
   return (
     <Label
       data-slot="field-label"
-      className={cn(
-        'group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-3 has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/50 *:data-[slot=field]:p-3 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10',
-        'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col',
-        className,
-      )}
+      className={cn(fieldLabelVariants({ variant }), className)}
       {...props}
     />
   );

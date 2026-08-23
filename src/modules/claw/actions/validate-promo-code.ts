@@ -1,6 +1,6 @@
 'use server';
 
-import { genRandomNumber } from '@/helpers/generate-random-number';
+import { artificialDelay } from '@/helpers/artificial-delay';
 
 const EXPIRED_PROMO_CODE = 'promo9';
 const VALID_PROMO_CODE = 'promo10';
@@ -13,11 +13,6 @@ type ValidationResult =
       valid: false;
       message: string;
     };
-
-async function artificialDelay(minMs: number = 50, maxMs: number = 1000) {
-  const ms = genRandomNumber(minMs, maxMs);
-  await new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 export default async function validatePromoCodeAction(
   promotionCode: string,

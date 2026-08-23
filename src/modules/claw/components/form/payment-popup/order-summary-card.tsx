@@ -35,10 +35,8 @@ export function OrderSummaryCard(props: OrderSummaryCardProps) {
   ];
 
   return (
-    <div>
-      <Label className="mb-4 leading-5 font-semibold text-muted-foreground">
-        Order Summary
-      </Label>
+    <div className="grid grid-rows-[auto_1fr] gap-4 md:gap-3">
+      <Label className="text-muted-foreground">Order Summary</Label>
 
       <Card className="bg-card-gradient px-4! py-6! [--card-spacing:--spacing(3)]">
         {rows.map((row, index) => (

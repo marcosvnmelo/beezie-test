@@ -58,6 +58,7 @@ export function useClawForm() {
           break;
         }
         case null: {
+          console.log('submit payment', value);
           break;
         }
         default: {
