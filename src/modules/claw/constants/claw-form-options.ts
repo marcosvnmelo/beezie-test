@@ -1,7 +1,7 @@
 import { formOptions } from '@tanstack/react-form-nextjs';
 
 import type { ClawForm, ClawFormSubmitAction } from '../schemas/claw-form.schema';
-import { PaymentMethods } from '../schemas/claw-form.schema';
+import { PaymentMethodType } from '../schemas/payment-method.schema.ts';
 
 interface FormMeta {
   submitAction: ClawFormSubmitAction | null;
@@ -19,7 +19,7 @@ export const clawFormOpts = formOptions({
       isPromotionCodeApplied: false,
     },
     reviewAndPayStep: {
-      paymentMethod: PaymentMethods.BeezieWallet,
+      paymentMethod: PaymentMethodType.BeezieWallet,
     },
   } satisfies ClawForm as ClawForm,
   onSubmitMeta: defaultMeta,

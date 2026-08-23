@@ -14,12 +14,12 @@ import { formatCurrency } from '@/helpers/format-currency';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
 import { useClawSuspenseQuery } from '@/modules/claw/hooks/use-claw-suspense-query';
-import { useWalletsSuspenseQuery } from '@/modules/claw/hooks/use-wallets-suspense-query';
+import { usePaymentMethodsSuspenseQuery } from '@/modules/claw/hooks/use-payment-methods-suspense-query';
+import { ReviewAndPayStepTabs } from '@/modules/claw/schemas/claw-form.schema';
 import {
-  PaymentMethods,
-  paymentMethodsSchema,
-  ReviewAndPayStepTabs,
-} from '@/modules/claw/schemas/claw-form.schema';
+  PaymentMethodType,
+  paymentMethodTypeSchema,
+} from '@/modules/claw/schemas/payment-method.schema';
 
 import { OrderSummaryCard } from './order-summary-card';
 
@@ -28,7 +28,7 @@ export const MobileContent = withClawForm({
   render: function Render({ form }) {
     const { claw } = useClawSuspenseQuery();
 
-    const { wallets } = useWalletsSuspenseQuery();
+    const { paymentMethodMap } = usePaymentMethodsSuspenseQuery();
 
     return (
       <form
@@ -46,13 +46,13 @@ export const MobileContent = withClawForm({
               case ReviewAndPayStepTabs.Wallet:
                 form.setFieldValue(
                   'reviewAndPayStep.paymentMethod',
-                  PaymentMethods.BeezieWallet,
+                  PaymentMethodType.BeezieWallet,
                 );
                 break;
               case ReviewAndPayStepTabs.Card:
                 form.setFieldValue(
                   'reviewAndPayStep.paymentMethod',
-                  PaymentMethods.Card,
+                  PaymentMethodType.Card,
                 );
                 break;
             }
@@ -87,8 +87,8 @@ export const MobileContent = withClawForm({
                       onValueChange={field.handleChange}
                       className="grid grid-cols-2"
                     >
-                      {paymentMethodsSchema.options
-                        .filter((pm) => pm !== PaymentMethods.Card)
+                      {paymentMethodTypeSchema.options
+                        .filter((pm) => pm !== PaymentMethodType.Card)
                         .map((pm) => (
                           <FieldLabel
                             key={pm}
@@ -103,9 +103,11 @@ export const MobileContent = withClawForm({
                               />
                               <FieldContent>
                                 <FieldTitle className="flex-col items-start">
-                                  {wallets[pm].name}
+                                  {paymentMethodMap[pm].name}
                                   <span>
-                                    {formatCurrency(wallets[pm].balance!)}
+                                    {formatCurrency(
+                                      paymentMethodMap[pm].balance,
+                                    )}
                                   </span>
                                 </FieldTitle>
                               </FieldContent>

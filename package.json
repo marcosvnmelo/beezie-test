@@ -13,8 +13,12 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@orpc/client": "2.0.0-beta.30",
+    "@orpc/server": "2.0.0-beta.30",
+    "@orpc/tanstack-query": "2.0.0-beta.30",
     "@tanstack/react-form": "^1.33.5",
     "@tanstack/react-form-nextjs": "^1.33.5",
+    "@tanstack/react-query": "^5.102.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.33.0",

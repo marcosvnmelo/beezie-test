@@ -6,6 +6,8 @@ import './globals.css';
 import { Header } from '@/components/layout/header/header';
 import { cn } from '@/lib/utils';
 
+import Providers from './providers';
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
@@ -37,8 +39,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       )}
     >
       <body className="dark flex min-h-full flex-col">
-        <Header />
-        {children}
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

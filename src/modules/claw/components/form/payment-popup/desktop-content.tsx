@@ -13,11 +13,11 @@ import { formatCurrency } from '@/helpers/format-currency';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
 import { useClawSuspenseQuery } from '@/modules/claw/hooks/use-claw-suspense-query';
-import { useWalletsSuspenseQuery } from '@/modules/claw/hooks/use-wallets-suspense-query';
+import { usePaymentMethodsSuspenseQuery } from '@/modules/claw/hooks/use-payment-methods-suspense-query';
 import {
-  PaymentMethods,
-  paymentMethodsSchema,
-} from '@/modules/claw/schemas/claw-form.schema';
+  PaymentMethodType,
+  paymentMethodTypeSchema,
+} from '@/modules/claw/schemas/payment-method.schema';
 
 import { OrderSummaryCard } from './order-summary-card';
 
@@ -26,7 +26,7 @@ export const DesktopContent = withClawForm({
   render: function Render({ form }) {
     const { claw } = useClawSuspenseQuery();
 
-    const { wallets } = useWalletsSuspenseQuery();
+    const { paymentMethodMap } = usePaymentMethodsSuspenseQuery();
 
     return (
       <form
@@ -49,7 +49,7 @@ export const DesktopContent = withClawForm({
                   onValueChange={field.handleChange}
                   className="grid auto-rows-fr"
                 >
-                  {paymentMethodsSchema.options.map((pm) => (
+                  {paymentMethodTypeSchema.options.map((pm) => (
                     <FieldLabel
                       key={pm}
                       htmlFor={`${field.name}-${pm}`}
@@ -63,13 +63,12 @@ export const DesktopContent = withClawForm({
                           className="items-center"
                         />
                         <FieldContent className="flex-row items-center group-last/field-label:flex-col group-last/field-label:items-start">
-                          <FieldTitle>{wallets[pm].name}</FieldTitle>
-                          {wallets[pm].balance && (
+                          <FieldTitle>{paymentMethodMap[pm].name}</FieldTitle>
+                          {pm !== PaymentMethodType.Card ? (
                             <span className="ms-auto">
-                              {formatCurrency(wallets[pm].balance)}
+                              {formatCurrency(paymentMethodMap[pm].balance)}
                             </span>
-                          )}{' '}
-                          {pm === PaymentMethods.Card && (
+                          ) : (
                             <p className="col-span-2 text-xs leading-3 font-medium text-muted-foreground italic">
                               Processing fees may apply
                             </p>

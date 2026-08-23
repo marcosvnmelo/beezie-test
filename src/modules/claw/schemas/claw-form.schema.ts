@@ -1,12 +1,6 @@
 import { z } from 'zod';
 
-export const PaymentMethods = {
-  BeezieWallet: 'BeezieWallet',
-  ExternalWallet: 'ExternalWallet',
-  Card: 'Card',
-} as const;
-export const paymentMethodsSchema = z.enum(PaymentMethods);
-export type PaymentMethods = z.infer<typeof paymentMethodsSchema>;
+import { paymentMethodTypeSchema } from './payment-method.schema';
 
 export const ReviewAndPayStepTabs = {
   Wallet: 'Wallet',
@@ -32,7 +26,7 @@ export function createClawFormSchema({ quantityStep }: CreateClawFormProps) {
       isPromotionCodeApplied: z.boolean().default(false),
     }),
     reviewAndPayStep: z.object({
-      paymentMethod: paymentMethodsSchema,
+      paymentMethod: paymentMethodTypeSchema,
     }),
   });
 }
