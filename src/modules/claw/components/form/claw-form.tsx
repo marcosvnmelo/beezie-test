@@ -65,7 +65,7 @@ export function ClawForm(props: ClawFormProps) {
             step === ClawFormStep.PendingConfirmation ? 'visible' : 'hidden'
           }
         >
-          <PendingConfirmationPopup form={form} />
+          <PendingConfirmationPopup />
         </Activity>
 
         <RevealVideo
