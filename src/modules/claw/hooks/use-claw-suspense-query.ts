@@ -1,21 +1,11 @@
-import { use } from 'react';
+import { useParams } from 'next/navigation';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { artificialDelay } from '@/helpers/artificial-delay';
-
-import type { Claw } from '../schemas/claws.schema';
-import { claws } from '../constants/claws';
-
-const clawPromise = getClawData();
+import { orpc } from '@/lib/orpc';
 
 export function useClawSuspenseQuery() {
-  // TODO: Get claw data from server
-  const claw = use(clawPromise);
+  const { id } = useParams<{ id: string }>();
+  const { data } = useSuspenseQuery(orpc.claw.findById.queryOptions({ input: { id } }));
 
-  return { claw };
-}
-
-async function getClawData(): Promise<Claw> {
-  await artificialDelay();
-
-  return claws[0]!;
+  return { claw: data };
 }

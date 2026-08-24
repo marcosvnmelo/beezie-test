@@ -8,7 +8,7 @@ interface IdleVideoCardProps {
 
 export function IdleVideoCard(props: IdleVideoCardProps) {
   return (
-    <div className="relative">
+    <div className="pointer-events-none relative">
       <Image
         src={props.claw.medias.idleVideo.fallbackImageUrl}
         alt=""

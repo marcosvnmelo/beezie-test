@@ -7,7 +7,12 @@ import { QuantityField } from '@/modules/claw/components/form/fields/quantity-fi
 import { TextField } from '@/modules/claw/components/form/fields/text-field';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { fieldContext, formContext } from '@/modules/claw/contexts/claw-form-context';
-import { ClawFormSubmitAction } from '@/modules/claw/schemas/claw-form.schema';
+import {
+  ClawFormSubmitAction,
+  createClawFormSchema,
+} from '@/modules/claw/schemas/claw-form.schema';
+
+import { useClawSuspenseQuery } from './use-claw-suspense-query';
 
 export const {
   useAppForm,
@@ -25,10 +30,17 @@ export const {
 });
 
 export function useClawForm() {
+  const { claw } = useClawSuspenseQuery();
+
   const [step, setStep] = useState<keyof ClawForm>('quantityStep');
 
   const form = useAppForm({
     ...clawFormOpts,
+    validators: {
+      onSubmit: createClawFormSchema({
+        quantityStep: { maxQuantity: claw.validations.maxQuantity },
+      }),
+    },
     onSubmit: async ({ value, meta, formApi }) => {
       switch (meta.submitAction) {
         case ClawFormSubmitAction.ApplyPromoCode: {

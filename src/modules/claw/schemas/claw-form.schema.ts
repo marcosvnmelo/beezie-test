@@ -31,7 +31,8 @@ export function createClawFormSchema({ quantityStep }: CreateClawFormProps) {
   });
 }
 
-export type ClawForm = z.infer<ReturnType<typeof createClawFormSchema>>;
+export type ClawFormInput = z.input<ReturnType<typeof createClawFormSchema>>;
+export type ClawForm = z.output<ReturnType<typeof createClawFormSchema>>;
 
 export const ClawFormSubmitAction = {
   ApplyPromoCode: 'ApplyPromoCode',

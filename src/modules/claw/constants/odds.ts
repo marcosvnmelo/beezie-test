@@ -6,9 +6,11 @@ import { OddType } from '../schemas/odds.schema';
 export const oddColorMap: Record<OddType, string> = {
   'ultra-rare': cn('[--color-odd:var(--primary)]'),
   'rare': cn('[--color-odd:var(--color-purple-400)]'),
-  'uncommon': cn('[--color-odd:var(--color-emerald-300)]'),
-  'common': cn('[--color-odd:var(--color-blue-400)]'),
-  'base': cn('[--color-odd:var(--muted-foreground)]'),
+  'uncommon': cn('[--color-odd:var(--color-blue-400)]'),
+  'common': cn('[--color-odd:var(--color-emerald-300)]'),
+  'base': cn(
+    '[--color-odd:color-mix(in_oklch,var(--muted-foreground),var(--foreground)_60%)]',
+  ),
 };
 
 const createOdds = <T extends Odd[]>(

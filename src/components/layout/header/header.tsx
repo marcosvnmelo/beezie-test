@@ -1,8 +1,11 @@
+import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { WalletIcon } from 'lucide-react';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { formatCurrency } from '@/helpers/format-currency';
+import { client } from '@/lib/orpc';
 import { cn } from '@/lib/utils';
 
 import { HeaderNavigation } from './header-navigation';
@@ -20,7 +23,9 @@ export function Header() {
 
       <HeaderNavigation />
 
-      <UserArea />
+      <Suspense fallback={<UserAreaSkeleton />}>
+        <UserArea />
+      </Suspense>
     </header>
   );
 }
@@ -50,12 +55,8 @@ function Logo() {
   );
 }
 
-function UserArea() {
-  // TODO: Fetch user data from API
-  const userData = {
-    balance: 190,
-    image: 'http://localhost:3000/mock/avatar.jpg',
-  };
+async function UserArea() {
+  const userData = await client.user.me();
 
   const formattedBalance = formatCurrency(userData.balance);
 
@@ -74,6 +75,16 @@ function UserArea() {
         height={40}
         className="size-10 rounded-full"
       />
+    </div>
+  );
+}
+
+function UserAreaSkeleton() {
+  return (
+    <div className="hidden items-center gap-4 md:flex">
+      <Skeleton className="h-8 w-23 rounded-md" />
+
+      <Skeleton className="size-10 rounded-full" />
     </div>
   );
 }

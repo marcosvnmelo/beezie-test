@@ -64,14 +64,14 @@ function OddCard(props: OddCardProps) {
       )}
     >
       <div className="inline-flex items-start justify-between self-stretch text-(--color-odd)">
-        <div className="justify-center text-sm leading-2.5 font-semibold">
+        <div className="justify-center text-sm leading-2.5 font-medium">
           {props.odd.name}
         </div>
-        <div className="text-base-chart-4 justify-center text-right text-xs leading-2.5 font-semibold">
+        <div className="text-base-chart-4 justify-center text-right text-xs leading-2.5 font-medium">
           0.19%
         </div>
       </div>
-      <div className="text-base-secondary-foreground justify-center text-xs leading-2.5 font-medium">
+      <div className="justify-center text-xs leading-2.5 font-medium text-muted-foreground">
         $5001 - $8000
       </div>
     </div>

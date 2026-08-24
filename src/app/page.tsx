@@ -1,5 +1,9 @@
 import { redirect } from 'next/navigation';
 
-export default function Page() {
-  redirect('/claw');
+import { client } from '@/lib/orpc';
+
+export default async function Page() {
+  const claw = await client.claw.findDefault();
+
+  redirect(`/claw/${claw.id}`);
 }

@@ -1,7 +1,6 @@
 import {
   dehydrate,
   HydrationBoundary,
-  noop,
   QueryClient,
 } from '@tanstack/react-query';
 
@@ -10,15 +9,22 @@ import { ClawCard } from '@/modules/claw/components/cards/claw-card/claw-card';
 import { IdleVideoCard } from '@/modules/claw/components/cards/idle-video-card';
 import { RecentPullsCard } from '@/modules/claw/components/cards/recent-pulls-card';
 import { TopItemsCard } from '@/modules/claw/components/cards/top-items-card/top-items-card';
-import { claws } from '@/modules/claw/constants/claws';
 
-export default async function ClawPage() {
-  // TODO: Get claw from query params
-  const claw = claws[0]!;
+interface PageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
 
   const queryClient = new QueryClient();
 
-  await queryClient.query(orpc.payment.list.queryOptions()).catch(noop);
+  const [claw] = await Promise.all([
+    queryClient.query(orpc.claw.findById.queryOptions({ input: { id } })),
+    queryClient.query(orpc.payment.list.queryOptions()),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
