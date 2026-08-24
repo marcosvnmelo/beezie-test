@@ -14,12 +14,12 @@ export type Odd = z.infer<typeof oddSchema>;
 
 export const oddDataSchema = z.object({
   percent: z.number(),
-  value: z.number().or(z.array(z.number())),
+  value: z.number().or(z.tuple([z.number(), z.number()])),
 });
 export type OddData = z.infer<typeof oddDataSchema>;
 
 export const oddsDataSchema = z.object({
   averageValue: z.number(),
-  odds: z.array(oddDataSchema.extend({ type: oddTypeSchema })),
+  odds: z.record(oddTypeSchema, oddDataSchema),
 });
 export type OddsData = z.infer<typeof oddsDataSchema>;

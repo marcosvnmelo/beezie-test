@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { oddsDataSchema } from './odds.schema';
+
 export const clawSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -17,6 +19,7 @@ export const clawSchema = z.object({
       url: z.string(),
     }),
   }),
+  oddsData: oddsDataSchema,
   validations: z.object({
     maxQuantity: z.number(),
   }),

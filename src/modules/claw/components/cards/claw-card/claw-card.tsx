@@ -39,7 +39,7 @@ export function ClawCard(props: ClawCardProps) {
 
           <Separator />
 
-          <ClawOdds />
+          <ClawOdds oddsData={props.claw.oddsData} />
 
           <Separator />
 
