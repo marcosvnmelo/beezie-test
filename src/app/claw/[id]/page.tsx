@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import type { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { cache } from 'react';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
 
-import { orpc } from '@/lib/orpc';
+import { client, orpc } from '@/lib/orpc';
 import { ClawCard } from '@/modules/claw/components/cards/claw-card/claw-card';
 import { IdleVideoCard } from '@/modules/claw/components/cards/idle-video-card';
 import { RecentPullsCard } from '@/modules/claw/components/cards/recent-pulls-card';
@@ -18,32 +19,46 @@ interface PageProps {
   }>;
 }
 
-export const metadata: Metadata = {
-  icons: [
-    {
-      url: '/claw/videos/reveal/web.mp4',
-      type: 'video/mp4',
-      rel: 'preload',
-      media: '(min-width: 768px)',
-      as: 'video',
-    } as Icon,
-    {
-      url: '/claw/videos/reveal/mobile.mp4',
-      type: 'video/mp4',
-      rel: 'preload',
-      media: '(max-width: 767px)',
-      as: 'video',
-    } as Icon,
-  ],
-};
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  const claw = await getCachedClaw(id);
+
+  return {
+    title: claw.name,
+    icons: [
+      {
+        url: '/claw/videos/reveal/web.mp4',
+        type: 'video/mp4',
+        rel: 'preload',
+        media: '(min-width: 768px)',
+        as: 'video',
+      } as Icon,
+      {
+        url: '/claw/videos/reveal/mobile.mp4',
+        type: 'video/mp4',
+        rel: 'preload',
+        media: '(max-width: 767px)',
+        as: 'video',
+      } as Icon,
+    ],
+  };
+}
 
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
 
   const queryClient = new QueryClient();
 
-  const [claw] = await Promise.all([
-    queryClient.query(orpc.claw.findById.queryOptions({ input: { id } })),
+  const claw = await getCachedClaw(id);
+
+  await Promise.all([
+    queryClient.setQueryData(
+      orpc.claw.findById.queryKey({ input: { id } }),
+      claw,
+    ),
     queryClient.query(orpc.payment.list.queryOptions()),
   ]);
 
@@ -63,3 +78,8 @@ export default async function Page({ params }: PageProps) {
     </HydrationBoundary>
   );
 }
+
+const getCachedClaw = cache(async (id: string) => {
+  const claw = await client.claw.findById({ id });
+  return claw;
+});
