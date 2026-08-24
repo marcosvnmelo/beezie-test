@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { createFormHook } from '@tanstack/react-form-nextjs';
 
+import { toast } from '@/components/ui/toast';
 import { artificialDelay } from '@/helpers/artificial-delay';
+import { formatCurrency } from '@/helpers/format-currency';
 import { client } from '@/lib/orpc';
 import validatePromoCodeAction from '@/modules/claw/actions/validate-promo-code';
 import { QuantityField } from '@/modules/claw/components/form/fields/quantity-field';
@@ -59,8 +61,11 @@ export function useClawForm() {
           const result = await validatePromoCodeAction(promotionCode);
 
           if (!result.valid) {
-            // TODO: Add toast
-            console.log('result', result);
+            toast.add({
+              title: 'Invalid Promotion Code',
+              description: result.message,
+              type: 'error',
+            });
           }
 
           formApi.setFieldValue('quantityStep.isPromotionCodeApplied', result.valid);
@@ -90,8 +95,14 @@ export function useClawForm() {
           });
 
           if (!result.success) {
-            // TODO: Add toast
-            console.log('result', result);
+            toast.add({
+              title: 'Payment Failed',
+              description: result.message,
+              type: 'error',
+            });
+
+            setStep(ClawFormStep.ReviewAndPay);
+            break;
           }
 
           setStep(ClawFormStep.RevealAnimation);
@@ -115,7 +126,6 @@ export function useClawForm() {
           break;
         }
         case ClawFormSubmitAction.KeepItems: {
-          console.log('Keep Items');
           resetForm();
           break;
         }
@@ -129,9 +139,11 @@ export function useClawForm() {
 
           await artificialDelay(2000, 4000);
 
-          // TODO: Add Success Toast
-          console.log('Swap Success');
-          console.log('totalValue', totalValue);
+          toast.add({
+            title: 'Swap success',
+            description: `${formatCurrency(totalValue)} will be credited to your wallet shortly.`,
+            type: 'success',
+          });
 
           resetForm();
           break;

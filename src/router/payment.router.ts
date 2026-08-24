@@ -33,8 +33,6 @@ const confirmPayment = os
       ),
   )
   .handler(async ({ input }) => {
-    console.log('confirmPayment', input);
-
     if (input.promotionCode) {
       const result = await validatePromoCodeAction(input.promotionCode);
       if (!result.valid) {

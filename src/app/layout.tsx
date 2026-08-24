@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
 
 import { Header } from '@/components/layout/header/header';
+import { Toaster } from '@/components/ui/toast';
 import { cn } from '@/lib/utils';
 
 import Providers from './providers';
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           <Header />
           {children}
         </Providers>
+        <Toaster />
       </body>
     </html>
   );
