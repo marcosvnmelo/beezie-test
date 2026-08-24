@@ -49,5 +49,6 @@ export const ClawFormSubmitAction = {
   OpenPaymentReview: 'OpenPaymentReview',
   ClosePaymentReview: 'ClosePaymentReview',
   ConfirmPayment: 'ConfirmPayment',
+  CompleteRevealAnimation: 'CompleteRevealAnimation',
 } as const;
 export type ClawFormSubmitAction = keyof typeof ClawFormSubmitAction;

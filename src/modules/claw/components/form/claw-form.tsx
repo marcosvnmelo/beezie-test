@@ -6,7 +6,11 @@ import dynamic from 'next/dynamic';
 import type { Claw } from '@/modules/claw/schemas/claws.schema';
 import { useClawForm } from '@/modules/claw/hooks/use-claw-form';
 
-import { ClawFormStep } from '../../schemas/claw-form.schema';
+import {
+  ClawFormStep,
+  ClawFormSubmitAction,
+} from '../../schemas/claw-form.schema';
+import { RevealVideo } from './reveal-video';
 import { PromotionCodeSection } from './sections/promotion-code-section';
 import { QuantitySection } from './sections/quantity-section';
 
@@ -61,6 +65,15 @@ export function ClawForm(props: ClawFormProps) {
         >
           <PendingConfirmationPopup form={form} />
         </Activity>
+
+        <RevealVideo
+          play={step === ClawFormStep.RevealAnimation}
+          onEnded={() =>
+            form.handleSubmit({
+              submitAction: ClawFormSubmitAction.CompleteRevealAnimation,
+            })
+          }
+        />
       </form.AppForm>
     </form>
   );

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import type { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import {
   dehydrate,
   HydrationBoundary,
@@ -15,6 +17,25 @@ interface PageProps {
     id: string;
   }>;
 }
+
+export const metadata: Metadata = {
+  icons: [
+    {
+      url: '/claw/videos/reveal/web.mp4',
+      type: 'video/mp4',
+      rel: 'preload',
+      media: '(min-width: 768px)',
+      as: 'video',
+    } as Icon,
+    {
+      url: '/claw/videos/reveal/mobile.mp4',
+      type: 'video/mp4',
+      rel: 'preload',
+      media: '(max-width: 767px)',
+      as: 'video',
+    } as Icon,
+  ],
+};
 
 export default async function Page({ params }: PageProps) {
   const { id } = await params;

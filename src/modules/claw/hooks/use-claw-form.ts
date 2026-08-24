@@ -89,6 +89,10 @@ export function useClawForm() {
 
           break;
         }
+        case ClawFormSubmitAction.CompleteRevealAnimation: {
+          setStep(ClawFormStep.Swap);
+          break;
+        }
         case null: {
           console.log('submit payment', value);
           break;
