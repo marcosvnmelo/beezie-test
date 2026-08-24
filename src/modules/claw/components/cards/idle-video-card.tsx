@@ -12,6 +12,7 @@ export function IdleVideoCard(props: IdleVideoCardProps) {
       <Image
         src={props.claw.medias.idleVideo.fallbackImageUrl}
         alt=""
+        loading="eager"
         aria-hidden="true"
         width={50}
         height={50}

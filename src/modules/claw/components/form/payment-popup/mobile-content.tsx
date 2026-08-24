@@ -1,3 +1,5 @@
+import { useSelector } from '@tanstack/react-form-nextjs';
+
 import { Button } from '@/components/ui/button';
 import {
   Field,
@@ -15,7 +17,10 @@ import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
 import { useClawSuspenseQuery } from '@/modules/claw/hooks/use-claw-suspense-query';
 import { usePaymentMethodsSuspenseQuery } from '@/modules/claw/hooks/use-payment-methods-suspense-query';
-import { ReviewAndPayStepTabs } from '@/modules/claw/schemas/claw-form.schema';
+import {
+  ClawFormSubmitAction,
+  ReviewAndPayStepTabs,
+} from '@/modules/claw/schemas/claw-form.schema';
 import {
   PaymentMethodType,
   paymentMethodTypeSchema,
@@ -30,6 +35,12 @@ export const MobileContent = withClawForm({
 
     const { paymentMethodMap } = usePaymentMethodsSuspenseQuery();
 
+    const tab = useSelector(form.store, (s) =>
+      s.values.reviewAndPayStep.paymentMethod === PaymentMethodType.Card
+        ? ReviewAndPayStepTabs.Card
+        : ReviewAndPayStepTabs.Wallet,
+    );
+
     return (
       <form
         className="grid items-start gap-6 p-6"
@@ -39,7 +50,7 @@ export const MobileContent = withClawForm({
         }}
       >
         <Tabs
-          defaultValue={ReviewAndPayStepTabs.Wallet}
+          value={tab}
           className="flex-row gap-6"
           onValueChange={(value) => {
             switch (value) {
@@ -131,7 +142,11 @@ export const MobileContent = withClawForm({
           type="submit"
           size="lg"
           className="h-12"
-          onClick={() => form.handleSubmit()}
+          onClick={() =>
+            form.handleSubmit({
+              submitAction: ClawFormSubmitAction.ConfirmPayment,
+            })
+          }
         >
           Confirm
         </Button>

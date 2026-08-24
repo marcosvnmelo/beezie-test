@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { createFormHook } from '@tanstack/react-form-nextjs';
 
-import type { ClawForm } from '@/modules/claw/schemas/claw-form.schema';
+import { client } from '@/lib/orpc';
 import validatePromoCodeAction from '@/modules/claw/actions/validate-promo-code';
 import { QuantityField } from '@/modules/claw/components/form/fields/quantity-field';
 import { TextField } from '@/modules/claw/components/form/fields/text-field';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { fieldContext, formContext } from '@/modules/claw/contexts/claw-form-context';
 import {
+  ClawFormStep,
   ClawFormSubmitAction,
   createClawFormSchema,
 } from '@/modules/claw/schemas/claw-form.schema';
@@ -32,7 +33,7 @@ export const {
 export function useClawForm() {
   const { claw } = useClawSuspenseQuery();
 
-  const [step, setStep] = useState<keyof ClawForm>('quantityStep');
+  const [step, setStep] = useState<ClawFormStep>(ClawFormStep.Quantity);
 
   const form = useAppForm({
     ...clawFormOpts,
@@ -62,11 +63,30 @@ export function useClawForm() {
           break;
         }
         case ClawFormSubmitAction.OpenPaymentReview: {
-          setStep('reviewAndPayStep');
+          setStep(ClawFormStep.ReviewAndPay);
           break;
         }
         case ClawFormSubmitAction.ClosePaymentReview: {
-          setStep('quantityStep');
+          setStep(ClawFormStep.Quantity);
+          break;
+        }
+        case ClawFormSubmitAction.ConfirmPayment: {
+          setStep(ClawFormStep.PendingConfirmation);
+
+          const result = await client.payment.confirmPayment({
+            clawId: claw.id,
+            quantity: value.quantityStep.quantity,
+            promotionCode: value.quantityStep.promotionCode,
+            paymentMethod: value.reviewAndPayStep.paymentMethod,
+          });
+
+          if (!result.success) {
+            // TODO: Add toast
+            console.log('result', result);
+          }
+
+          setStep(ClawFormStep.RevealAnimation);
+
           break;
         }
         case null: {

@@ -14,6 +14,7 @@ import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
 import { useClawSuspenseQuery } from '@/modules/claw/hooks/use-claw-suspense-query';
 import { usePaymentMethodsSuspenseQuery } from '@/modules/claw/hooks/use-payment-methods-suspense-query';
+import { ClawFormSubmitAction } from '@/modules/claw/schemas/claw-form.schema';
 import {
   PaymentMethodType,
   paymentMethodTypeSchema,
@@ -93,7 +94,11 @@ export const DesktopContent = withClawForm({
           type="submit"
           size="lg"
           className="col-span-2 mx-auto w-full max-w-90 font-semibold"
-          onClick={() => form.handleSubmit()}
+          onClick={() =>
+            form.handleSubmit({
+              submitAction: ClawFormSubmitAction.ConfirmPayment,
+            })
+          }
         >
           Confirm
         </Button>

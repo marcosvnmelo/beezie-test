@@ -59,6 +59,22 @@
       opacity: 0.85;
     }
   }
+
+  --animate-width-loading: loading-bar-width 10s ease-in-out forwards;
+  @keyframes loading-bar-width {
+    0% {
+      width: 0;
+    }
+    40% {
+      width: 50%;
+    }
+    60% {
+      width: 75%;
+    }
+    100% {
+      width: 95%;
+    }
+  }
 }
 
 :root {

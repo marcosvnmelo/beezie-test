@@ -8,6 +8,15 @@ export const ReviewAndPayStepTabs = {
 } as const;
 export type ReviewAndPayStepTabs = keyof typeof ReviewAndPayStepTabs;
 
+export const ClawFormStep = {
+  Quantity: 'Quantity',
+  ReviewAndPay: 'ReviewAndPay',
+  PendingConfirmation: 'PendingConfirmation',
+  RevealAnimation: 'RevealAnimation',
+  Swap: 'Swap',
+} as const;
+export type ClawFormStep = keyof typeof ClawFormStep;
+
 interface CreateClawFormProps {
   quantityStep: {
     maxQuantity: number;
@@ -39,5 +48,6 @@ export const ClawFormSubmitAction = {
   ClearPromotionCode: 'ClearPromotionCode',
   OpenPaymentReview: 'OpenPaymentReview',
   ClosePaymentReview: 'ClosePaymentReview',
+  ConfirmPayment: 'ConfirmPayment',
 } as const;
 export type ClawFormSubmitAction = keyof typeof ClawFormSubmitAction;
