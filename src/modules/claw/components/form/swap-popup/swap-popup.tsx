@@ -1,3 +1,6 @@
+import { useCallback } from 'react';
+import { useSelector } from '@tanstack/react-form-nextjs';
+
 import { cn } from '@/lib/utils';
 import { clawFormOpts } from '@/modules/claw/constants/claw-form-options';
 import { withClawForm } from '@/modules/claw/hooks/use-claw-form';
@@ -10,9 +13,12 @@ import { SwapItem } from './swap-item';
 export const SwapPopup = withClawForm({
   ...clawFormOpts,
   render: function Render({ form }) {
-    function keepItems() {
+    const isSubmitting = useSelector(form.store, (s) => s.isSubmitting);
+
+    const keepItems = useCallback(() => {
+      if (isSubmitting) return;
       form.handleSubmit({ submitAction: ClawFormSubmitAction.KeepItems });
-    }
+    }, [form, isSubmitting]);
 
     return (
       <ResponsivePopup
@@ -42,6 +48,7 @@ export const SwapPopup = withClawForm({
                 <form.Field key={i} name={`swapStep.items[${i}]`}>
                   {(field) => (
                     <SwapItem
+                      form={form}
                       multiple={array.length > 1}
                       item={field.state.value}
                       onSelect={() =>
