@@ -16,6 +16,7 @@
     "@orpc/client": "2.0.0-beta.30",
     "@orpc/server": "2.0.0-beta.30",
     "@orpc/tanstack-query": "2.0.0-beta.30",
+    "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-form": "^1.33.5",
     "@tanstack/react-form-nextjs": "^1.33.5",
     "@tanstack/react-query": "^5.102.0",

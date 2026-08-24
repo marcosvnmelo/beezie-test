@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { env } from '@/env';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 
@@ -14,7 +15,7 @@ const mockData: Item[] = generateItems({
   nameGenerator: ({ randomYear, randomNumber, randomCondition }) => {
     return `${randomYear} Palden Fates Garchomp EX #${randomNumber} PSA ${randomCondition}`;
   },
-  imageUrl: 'http://localhost:3000/mock/recent-pull-item.webp',
+  imageUrl: `${env.NEXT_PUBLIC_BASE_URL}/mock/recent-pull-item.webp`,
 });
 
 export function RecentPullsCard() {

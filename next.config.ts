@@ -1,11 +1,13 @@
 import type { NextConfig } from 'next';
 
-const isDev = process.env.NODE_ENV === 'development';
+import { env } from '@/env';
+
+const isDev = env.NODE_ENV === 'development';
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
   images: {
-    remotePatterns: isDev ? [new URL('http://localhost:3000/**')] : [],
+    remotePatterns: [new URL(`${env.NEXT_PUBLIC_BASE_URL}/**`)],
     dangerouslyAllowLocalIP: isDev,
   },
 };
