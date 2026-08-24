@@ -16,6 +16,7 @@ import {
   createClawFormSchema,
 } from '@/modules/claw/schemas/claw-form.schema';
 
+import { fireConfetti } from '../helpers/fire-confetti';
 import { generateItems } from '../helpers/generate-items';
 import { useClawSuspenseQuery } from './use-claw-suspense-query';
 
@@ -123,6 +124,7 @@ export function useClawForm() {
           );
 
           setStep(ClawFormStep.Swap);
+          await fireConfetti();
           break;
         }
         case ClawFormSubmitAction.KeepItems: {
