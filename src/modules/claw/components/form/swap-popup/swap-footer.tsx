@@ -60,7 +60,7 @@ export const SwapPopupFooter = withClawForm({
     return (
       <div
         className={cn(
-          'group/footer hidden grid-cols-2 items-center gap-4 p-4',
+          'group/footer mt-auto hidden grid-cols-2 items-center gap-4 p-4',
           'peer-has-data-multiple:grid',
           'md:peer-has-data-multiple:grid-cols-[1fr_auto_auto]',
         )}

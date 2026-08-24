@@ -32,7 +32,7 @@ export const SwapPopup = withClawForm({
       >
         <form
           className={cn(
-            'group/form peer p-4 pb-10 has-data-multiple:pb-0',
+            'group/form peer items-start p-4 pb-10 has-data-multiple:pb-0',
             'grid flex-1 gap-x-2 gap-y-2.5 overflow-y-auto',
             'has-data-multiple:grid-cols-2',
             'md:has-data-multiple:grid-cols-4 md:has-data-multiple:gap-4 md:has-data-multiple:px-0 md:has-data-multiple:pt-8',
