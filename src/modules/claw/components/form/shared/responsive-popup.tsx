@@ -18,7 +18,7 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 import { cn } from '@/lib/utils';
 
 interface ResponsivePopupProps extends React.PropsWithChildren {
-  title: string;
+  title: React.ReactNode;
   titleClassName: string;
 
   onClose: () => void;

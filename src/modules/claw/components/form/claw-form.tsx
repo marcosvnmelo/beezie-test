@@ -31,6 +31,12 @@ const PendingConfirmationPopup = dynamic(
 const RevealVideo = dynamic(() => import('./reveal-video'), {
   ssr: false,
 });
+const SwapPopup = dynamic(
+  () => import('./swap-popup/swap-popup').then((mod) => mod.SwapPopup),
+  {
+    ssr: false,
+  },
+);
 
 interface ClawFormProps {
   claw: Claw;
@@ -76,6 +82,10 @@ export function ClawForm(props: ClawFormProps) {
             })
           }
         />
+
+        <Activity mode={step === ClawFormStep.Swap ? 'visible' : 'hidden'}>
+          <SwapPopup form={form} />
+        </Activity>
       </form.AppForm>
     </form>
   );

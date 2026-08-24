@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { itemSchema } from './item.schema';
 import { paymentMethodTypeSchema } from './payment-method.schema';
 
 export const ReviewAndPayStepTabs = {
@@ -37,6 +38,13 @@ export function createClawFormSchema({ quantityStep }: CreateClawFormProps) {
     reviewAndPayStep: z.object({
       paymentMethod: paymentMethodTypeSchema,
     }),
+    swapStep: z.object({
+      items: z.array(
+        itemSchema.extend({
+          selected: z.boolean().default(true),
+        }),
+      ),
+    }),
   });
 }
 
@@ -50,5 +58,6 @@ export const ClawFormSubmitAction = {
   ClosePaymentReview: 'ClosePaymentReview',
   ConfirmPayment: 'ConfirmPayment',
   CompleteRevealAnimation: 'CompleteRevealAnimation',
+  KeepItems: 'KeepItems',
 } as const;
 export type ClawFormSubmitAction = keyof typeof ClawFormSubmitAction;

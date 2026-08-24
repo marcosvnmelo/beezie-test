@@ -25,6 +25,9 @@ export const clawFormOpts = formOptions({
     reviewAndPayStep: {
       paymentMethod: PaymentMethodType.BeezieWallet,
     },
+    swapStep: {
+      items: [],
+    },
   } satisfies ClawForm as ClawFormInput,
   onSubmitMeta: defaultMeta,
 });
