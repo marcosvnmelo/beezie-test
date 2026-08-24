@@ -10,7 +10,6 @@ import {
   ClawFormStep,
   ClawFormSubmitAction,
 } from '../../schemas/claw-form.schema';
-import { RevealVideo } from './reveal-video';
 import { PromotionCodeSection } from './sections/promotion-code-section';
 import { QuantitySection } from './sections/quantity-section';
 
@@ -29,6 +28,9 @@ const PendingConfirmationPopup = dynamic(
     ssr: false,
   },
 );
+const RevealVideo = dynamic(() => import('./reveal-video'), {
+  ssr: false,
+});
 
 interface ClawFormProps {
   claw: Claw;

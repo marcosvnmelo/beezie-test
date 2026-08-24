@@ -9,7 +9,7 @@ interface RevealVideoProps {
   onEnded: () => void;
 }
 
-export function RevealVideo(props: RevealVideoProps) {
+export default function RevealVideo({ play, onEnded }: RevealVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -17,15 +17,27 @@ export function RevealVideo(props: RevealVideoProps) {
       return;
     }
 
-    videoRef.current.currentTime = 0;
-    videoRef.current.play();
-  }, [props.play]);
+    function onEndedListener() {
+      if (play) onEnded();
+    }
+
+    const videoElement = videoRef.current;
+
+    videoElement.addEventListener('ended', onEndedListener);
+
+    videoElement.currentTime = 0;
+    videoElement.play();
+
+    return () => {
+      videoElement.removeEventListener('ended', onEndedListener);
+    };
+  }, [play, onEnded]);
 
   return (
     <div
       className={cn(
         'fixed inset-0 z-50 hidden h-dvh w-dvw items-center justify-center bg-black',
-        props.play && 'flex',
+        play && 'flex',
       )}
     >
       <video
@@ -33,7 +45,6 @@ export function RevealVideo(props: RevealVideoProps) {
         muted
         playsInline
         preload="auto"
-        onEnded={props.onEnded}
         className="pointer-events-none size-full object-contain"
       >
         <source
