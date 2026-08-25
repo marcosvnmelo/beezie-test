@@ -10,6 +10,11 @@ interface OrderSummaryCardProps {
 }
 
 export function OrderSummaryCard(props: OrderSummaryCardProps) {
+  const formattedTotal = formatCurrency(
+    props.claw.values.price * props.quantity,
+  );
+  const totalPoints = props.claw.values.points * props.quantity;
+
   const rows: OrderSummaryRowItem[] = [
     {
       type: 'item',
@@ -26,11 +31,11 @@ export function OrderSummaryCard(props: OrderSummaryCardProps) {
     },
     {
       type: 'total',
-      value: formatCurrency(props.claw.values.price * props.quantity),
+      value: formattedTotal,
     },
     {
       type: 'points',
-      value: `+${props.claw.values.points * props.quantity} points`,
+      value: `+${totalPoints} points`,
     },
   ];
 
@@ -38,11 +43,20 @@ export function OrderSummaryCard(props: OrderSummaryCardProps) {
     <div className="grid grid-rows-[auto_1fr] gap-4 md:gap-3">
       <Label className="text-muted-foreground">Order Summary</Label>
 
-      <Card className="bg-card-gradient px-4! py-6! [--card-spacing:--spacing(3)]">
+      <Card className="bg-card-gradient px-4! py-6! [--card-spacing:--spacing(3)] max-md:hidden">
         {rows.map((row, index) => (
           <OrderSummaryRow key={index} item={row} />
         ))}
       </Card>
+
+      <MobileCard
+        item={{
+          name: props.claw.name,
+          quantity: props.quantity,
+        }}
+        total={formattedTotal}
+        totalPoints={totalPoints}
+      />
     </div>
   );
 }
@@ -102,6 +116,33 @@ function OrderSummaryRow(props: OrderSummaryRowProps) {
   return (
     <div className="flex items-center justify-end">
       <p className="text-xs font-medium text-primary">{props.item.value}</p>
+    </div>
+  );
+}
+
+interface MobileCardProps {
+  item: {
+    name: string;
+    quantity: number;
+  };
+  total: string;
+  totalPoints: number;
+}
+
+function MobileCard(props: MobileCardProps) {
+  return (
+    <div className="flex items-center justify-between rounded-md border bg-card-gradient p-3 md:hidden">
+      <div>
+        <p className="text-sm font-semibold">{props.item.name}</p>
+        <p className="text-xs font-medium text-muted-foreground">
+          Quantity: {props.item.quantity}
+        </p>
+      </div>
+
+      <div className="text-end">
+        <p className="text-sm font-semibold">{props.total}</p>
+        <p className="text-xs font-medium text-primary">{`+${props.totalPoints} pts`}</p>
+      </div>
     </div>
   );
 }
