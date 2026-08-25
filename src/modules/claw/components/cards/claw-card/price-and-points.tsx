@@ -9,7 +9,7 @@ export function PriceAndPoints(props: Pick<PriceAndPointsProps, 'claw'>) {
   const formattedPrice = formatCurrency(props.claw.values.price);
 
   return (
-    <p className="text-xl font-semibold md:text-2xl">
+    <p className="text-xl font-semibold max-md:-mb-2 md:text-2xl">
       {formattedPrice}
       <span className="ms-2 align-middle text-xs text-primary md:ms-1.5 md:text-sm md:leading-normal">
         +{props.claw.values.points} points
