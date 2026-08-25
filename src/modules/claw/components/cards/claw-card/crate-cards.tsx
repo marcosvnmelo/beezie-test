@@ -30,7 +30,7 @@ function CrateCard(props: Pick<CrateCardsProps, 'claw'>) {
   return (
     <Button
       variant="link"
-      className="block size-auto border border-muted-foreground/25 bg-secondary p-4 text-center hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]"
+      className="block size-auto border border-muted-foreground/25 bg-secondary py-4 text-center hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]"
       nativeButton={false}
       render={<Link href={`/claw/${props.claw.id}`} />}
     >
