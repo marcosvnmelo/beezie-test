@@ -7,6 +7,8 @@ import { paymentMethods } from '@/modules/claw/constants/payment-method';
 import { clawSchema } from '@/modules/claw/schemas/claws.schema';
 import { paymentMethodTypeSchema } from '@/modules/claw/schemas/payment-method.schema';
 
+import { authMiddleware } from './middlewares';
+
 const list = os.handler(async () => {
   return paymentMethods;
 });
@@ -50,7 +52,7 @@ const confirmPayment = os
     };
   });
 
-export const paymentRouter = {
+export const paymentRouter = os.use(authMiddleware).router({
   list,
   confirmPayment,
-};
+});

@@ -1,14 +1,11 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { WalletIcon } from 'lucide-react';
 
-import { Skeleton } from '@/components/ui/skeleton';
-import { formatCurrency } from '@/helpers/format-currency';
-import { client } from '@/lib/orpc';
 import { cn } from '@/lib/utils';
 
 import { HeaderNavigation } from './header-navigation';
+import { UserArea, UserAreaSkeleton } from './use-area';
 
 export function Header() {
   return (
@@ -52,39 +49,5 @@ function Logo() {
         unoptimized
       />
     </Link>
-  );
-}
-
-async function UserArea() {
-  const userData = await client.user.me();
-
-  const formattedBalance = formatCurrency(userData.balance);
-
-  return (
-    <div className="hidden items-center gap-4 md:flex">
-      <div className="flex items-center gap-2.5 rounded-md bg-muted px-4 py-1.5">
-        <WalletIcon className="size-4" />
-
-        <span className="text-sm font-medium">{formattedBalance}</span>
-      </div>
-
-      <Image
-        src={userData.image}
-        alt="User Avatar"
-        width={40}
-        height={40}
-        className="size-10 rounded-full"
-      />
-    </div>
-  );
-}
-
-function UserAreaSkeleton() {
-  return (
-    <div className="hidden items-center gap-4 md:flex">
-      <Skeleton className="h-8 w-23 rounded-md" />
-
-      <Skeleton className="size-10 rounded-full" />
-    </div>
   );
 }
