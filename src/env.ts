@@ -12,4 +12,5 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_BASE_URL: process.env['VERCEL_URL'],
   },
+  emptyStringAsUndefined: true,
 });
