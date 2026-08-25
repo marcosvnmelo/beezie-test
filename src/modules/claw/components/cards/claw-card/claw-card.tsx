@@ -21,7 +21,7 @@ interface ClawCardProps {
 export function ClawCard(props: ClawCardProps) {
   return (
     <ClawCardErrorBoundary>
-      <Card>
+      <Card className="max-md:py-5 max-md:[--card-spacing:--spacing(4)]">
         <CardHeader>
           <CardTitle className="text-xl font-semibold md:text-2xl">
             {props.claw.name}
