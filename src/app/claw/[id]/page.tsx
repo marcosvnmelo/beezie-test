@@ -65,7 +65,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main className="flex justify-center pb-20 md:pb-6">
-        <div className="grid grid-rows-[1fr_1fr_auto_auto] gap-4 px-4 py-2 md:max-w-7xl md:grid-cols-2 md:grid-rows-none">
+        <div className="grid gap-4 px-4 py-2 md:max-w-7xl md:grid-cols-2">
           <IdleVideoCard claw={claw} />
 
           <ClawCard claw={claw} />

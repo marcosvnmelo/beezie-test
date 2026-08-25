@@ -26,7 +26,7 @@ export function IdleVideoCard(props: IdleVideoCardProps) {
         preload="auto"
         poster={props.claw.medias.idleVideo.fallbackImageUrl}
         aria-hidden="true"
-        className="relative z-2 size-full rounded-xl object-cover"
+        className="relative z-2 size-full rounded-xl object-cover max-md:aspect-square"
       >
         <source src={props.claw.medias.idleVideo.url} type="video/mp4" />
       </video>
