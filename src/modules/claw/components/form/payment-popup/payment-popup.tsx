@@ -14,7 +14,7 @@ export const PaymentPopup = withClawForm({
     return (
       <ResponsivePopup
         title="Review & pay"
-        titleClassName="text-lg leading-4 font-semibold"
+        titleClassName="text-lg  font-semibold"
         onClose={() =>
           form.handleSubmit({
             submitAction: ClawFormSubmitAction.ClosePaymentReview,

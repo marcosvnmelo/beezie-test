@@ -21,7 +21,7 @@ export function RecentPullsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-center text-2xl leading-8 font-semibold">
+        <CardTitle className="text-center text-2xl font-semibold">
           Recent Pulls
         </CardTitle>
       </CardHeader>
@@ -66,7 +66,7 @@ function RecentPullItemCard({ item }: RecentPullItemCardProps) {
       </div>
       <div className="flex flex-1 items-start justify-between px-2">
         <div className="space-y-2">
-          <div className="text-base leading-6 font-semibold">{item.name}</div>
+          <div className="text-base font-semibold">{item.name}</div>
           <div className="text-sm font-normal text-muted-foreground">
             {item.owner.name}
           </div>

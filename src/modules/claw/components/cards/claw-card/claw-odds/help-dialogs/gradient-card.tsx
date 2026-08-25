@@ -17,10 +17,8 @@ export function GradientCard(props: GradientCardProps) {
           key={row.label}
           className="flex w-full items-center justify-between gap-3"
         >
-          <span className="text-xs leading-4 text-muted-foreground">
-            {row.label}
-          </span>
-          <span className="text-sm leading-5 font-medium">{row.value}</span>
+          <span className="text-xs text-muted-foreground">{row.label}</span>
+          <span className="text-sm font-medium">{row.value}</span>
         </div>
       ))}
     </Card>

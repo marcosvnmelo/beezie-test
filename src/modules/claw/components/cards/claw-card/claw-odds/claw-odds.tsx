@@ -17,7 +17,7 @@ export function ClawOdds(props: ClawOddsProps) {
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-1">
-            <span className="text-base leading-4 font-semibold text-foreground">
+            <span className="text-base font-semibold text-foreground">
               Odds
             </span>
 

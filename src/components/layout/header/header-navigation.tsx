@@ -49,7 +49,7 @@ export function HeaderNavigation() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Marketplace</NavigationMenuTrigger>
           <NavigationMenuContent className="space-y-2.5">
-            <h2 className="text-sm leading-5 font-medium text-[#b4b4b4]">
+            <h2 className="text-sm font-medium text-[#b4b4b4]">
               Trending Categories
             </h2>
             <div className="grid grid-cols-2 gap-2">

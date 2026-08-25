@@ -21,7 +21,7 @@ export function TopItemsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-center text-2xl leading-8 font-semibold">
+        <CardTitle className="text-center text-2xl font-semibold">
           Top Items
         </CardTitle>
       </CardHeader>
@@ -65,9 +65,7 @@ function TopItemCard({ item }: TopItemCardProps) {
         />
       </div>
       <div className="px-2 py-1.5">
-        <p className="line-clamp-2 text-xs leading-3 font-medium">
-          {item.name}
-        </p>
+        <p className="line-clamp-2 text-xs font-medium">{item.name}</p>
 
         <Separator className="my-2" />
 

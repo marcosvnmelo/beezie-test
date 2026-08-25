@@ -39,14 +39,14 @@ function OddCard(props: OddCardProps) {
       )}
     >
       <div className="inline-flex items-start justify-between self-stretch text-(--color-odd)">
-        <div className="justify-center text-sm leading-2.5 font-medium">
+        <div className="justify-center text-sm font-medium">
           {props.odd.name}
         </div>
-        <div className="text-base-chart-4 justify-center text-right text-xs leading-2.5 font-medium">
+        <div className="text-base-chart-4 justify-center text-right text-xs font-medium">
           {props.data.percent}%
         </div>
       </div>
-      <div className="justify-center text-xs leading-2.5 font-medium text-muted-foreground">
+      <div className="justify-center text-xs font-medium text-muted-foreground">
         {formatOddValue(props.data.value)}
       </div>
     </div>

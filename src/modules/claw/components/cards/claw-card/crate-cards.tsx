@@ -13,9 +13,7 @@ interface CrateCardsProps {
 export function CrateCards(props: CrateCardsProps) {
   return (
     <div className="flex w-full flex-col gap-3 md:gap-2">
-      <h2 className="text-sm leading-4 font-medium md:text-base md:leading-5.25">
-        More Claw Machines:
-      </h2>
+      <h2 className="text-sm font-medium md:text-base">More Claw Machines:</h2>
       <div className="grid grid-cols-3 gap-2 md:gap-4">
         {claws
           .filter((c) => c.id !== props.claw.id)
@@ -43,7 +41,7 @@ function CrateCard(props: Pick<CrateCardsProps, 'claw'>) {
         height={32}
         className="mx-auto mb-2 shrink-0"
       />
-      <p className="mb-1 text-sm leading-4 font-semibold text-foreground md:text-base">
+      <p className="mb-1 text-sm font-semibold text-foreground md:text-base">
         {formattedPrice}
       </p>
       <p className="text-xs font-medium text-muted-foreground md:text-sm">

@@ -26,7 +26,7 @@ export function OddsHelpDialog() {
 
       <div className="flex w-full items-start gap-1 text-muted-foreground">
         <CircleHelpIcon className="size-5" />
-        <p className="text-ds-fg-secondary flex-1 text-sm leading-5 font-medium">
+        <p className="text-ds-fg-secondary flex-1 text-sm font-medium">
           FMV is based on multiple market sources and updated periodically to
           reflect current market conditions.
         </p>

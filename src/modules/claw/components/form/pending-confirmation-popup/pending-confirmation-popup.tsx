@@ -39,7 +39,7 @@ export function PendingConfirmationPopup() {
   return (
     <ResponsivePopup
       title="What you can pull"
-      titleClassName={cn('text-lg leading-4 font-semibold')}
+      titleClassName={cn('text-lg font-semibold')}
       onClose={noop}
       dialogContentClassName={cn('sm:max-w-120')}
     >

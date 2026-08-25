@@ -66,7 +66,7 @@ type OrderSummaryRowItem =
     };
 
 const rowClassNames = 'flex items-center justify-between gap-2';
-const valueClassNames = 'text-sm leading-4 font-semibold text-foreground';
+const valueClassNames = 'text-sm  font-semibold text-foreground';
 
 interface OrderSummaryRowProps {
   item: OrderSummaryRowItem;
@@ -76,7 +76,7 @@ function OrderSummaryRow(props: OrderSummaryRowProps) {
   if (props.item.type === 'item') {
     return (
       <div className={rowClassNames}>
-        <p className="text-sm leading-3 font-medium text-muted-foreground">
+        <p className="text-sm font-medium text-muted-foreground">
           {props.item.label}
         </p>
         <p className={valueClassNames}>{props.item.value}</p>
@@ -92,7 +92,7 @@ function OrderSummaryRow(props: OrderSummaryRowProps) {
     return (
       <div className={rowClassNames}>
         <p className={valueClassNames}>Total</p>
-        <p className="text-sm leading-4 font-semibold text-foreground">
+        <p className="text-sm font-semibold text-foreground">
           {props.item.value}
         </p>
       </div>
@@ -101,9 +101,7 @@ function OrderSummaryRow(props: OrderSummaryRowProps) {
 
   return (
     <div className="flex items-center justify-end">
-      <p className="text-xs leading-3 font-medium text-primary">
-        {props.item.value}
-      </p>
+      <p className="text-xs font-medium text-primary">{props.item.value}</p>
     </div>
   );
 }

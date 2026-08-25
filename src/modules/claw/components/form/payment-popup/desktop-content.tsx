@@ -70,7 +70,7 @@ export const DesktopContent = withClawForm({
                               {formatCurrency(paymentMethodMap[pm].balance)}
                             </span>
                           ) : (
-                            <p className="col-span-2 text-xs leading-3 font-medium text-muted-foreground italic">
+                            <p className="col-span-2 text-xs font-medium text-muted-foreground italic">
                               Processing fees may apply
                             </p>
                           )}

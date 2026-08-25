@@ -25,7 +25,7 @@ function Fallback({ error, resetErrorBoundary }: FallbackProps) {
     <Card className="flex-row items-center justify-center border border-destructive p-0 px-(--card-spacing)">
       <Card className="max-w-sm grow bg-card-gradient">
         <CardHeader>
-          <CardTitle className="text-xl leading-7 font-semibold md:text-2xl md:leading-8">
+          <CardTitle className="text-xl font-semibold md:text-2xl">
             Something went wrong
           </CardTitle>
           <CardDescription>

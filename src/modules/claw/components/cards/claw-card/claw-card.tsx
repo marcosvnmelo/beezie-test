@@ -23,7 +23,7 @@ export function ClawCard(props: ClawCardProps) {
     <ClawCardErrorBoundary>
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl leading-7 font-semibold md:text-2xl md:leading-8">
+          <CardTitle className="text-xl font-semibold md:text-2xl">
             {props.claw.name}
           </CardTitle>
           <CardDescription className="hidden md:block">
