@@ -4,7 +4,6 @@ import type { Item } from '@/modules/claw/schemas/item.schema';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { env } from '@/env';
 import { formatCurrency } from '@/helpers/format-currency';
 import { cn } from '@/lib/utils';
 import { oddColorMap } from '@/modules/claw/constants/odds';
@@ -15,7 +14,7 @@ const mockData: Item[] = generateItems({
   nameGenerator: ({ randomYear, randomNumber, randomCondition }) => {
     return `${randomYear} Legendary Collection Mewtwo #${randomNumber} CGC ${randomCondition}`;
   },
-  imageUrl: `${env.NEXT_PUBLIC_BASE_URL}/mock/top-item.webp`,
+  imageUrl: '/mock/top-item.webp',
 });
 
 export function TopItemsCard() {
