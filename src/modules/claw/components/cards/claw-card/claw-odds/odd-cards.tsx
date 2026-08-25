@@ -35,7 +35,7 @@ function OddCard(props: OddCardProps) {
     <div
       className={cn(
         props.odd.colorClassName,
-        'inline-flex flex-col items-start justify-start gap-2 self-stretch rounded-md border-l border-(--color-odd) bg-linear-to-r from-(--color-odd)/10 to-black/0 px-2 py-3',
+        'inline-flex flex-col items-start justify-start gap-2 self-stretch rounded-md border-l border-(--color-odd) bg-linear-to-r from-(--color-odd)/10 to-card-secondary/0 p-2 md:py-3',
       )}
     >
       <div className="inline-flex items-start justify-between self-stretch text-(--color-odd)">
