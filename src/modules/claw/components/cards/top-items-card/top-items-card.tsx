@@ -19,7 +19,7 @@ const mockData: Item[] = generateItems({
 
 export function TopItemsCard() {
   return (
-    <Card className="[--card-spacing:--spacing(4)] md:[--card-spacing:--spacing(6)]">
+    <Card className="max-md:[--card-spacing:--spacing(4)]">
       <CardHeader>
         <CardTitle className="text-center text-lg font-semibold md:text-2xl">
           Top Items
