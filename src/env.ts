@@ -6,11 +6,19 @@ export const env = createEnv({
   extends: [vercel()],
   shared: {
     NODE_ENV: z.enum(['development', 'production']).default('development'),
-    NEXT_PUBLIC_BASE_URL: z.url().default('http://localhost:3000'),
+    NEXT_PUBLIC_BASE_URL: z
+      .string()
+      .default('http://localhost:3000')
+      .transform((url) => {
+        if (url.includes('localhost')) return url;
+
+        return url.replace(/^(https?:\/\/)?(.+)/, 'https://$2');
+      })
+      .pipe(z.url()),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_BASE_URL: process.env['VERCEL_URL'] || process.env['NEXT_PUBLIC_BASE_URL'],
+    NEXT_PUBLIC_BASE_URL: process.env['VERCEL_URL'],
   },
   emptyStringAsUndefined: true,
 });
