@@ -19,15 +19,15 @@ const mockData: Item[] = generateItems({
 
 export function TopItemsCard() {
   return (
-    <Card>
+    <Card className="[--card-spacing:--spacing(4)] md:[--card-spacing:--spacing(6)]">
       <CardHeader>
-        <CardTitle className="text-center text-2xl font-semibold">
+        <CardTitle className="text-center text-lg font-semibold md:text-2xl">
           Top Items
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="max-h-160">
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
+        <ScrollArea className="max-h-150 md:max-h-160">
+          <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3">
             {mockData.map((item) => (
               <TopItemCard key={item.id} item={item} />
             ))}
@@ -46,8 +46,8 @@ function TopItemCard({ item }: TopItemCardProps) {
   const formattedFMV = formatCurrency(item.fmv);
 
   return (
-    <div className="flex flex-col p-1">
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+    <div className="flex flex-col rounded-lg bg-card-secondary p-1">
+      <div className="relative aspect-square w-full overflow-hidden rounded-md">
         <Image
           src={item.image}
           alt=""

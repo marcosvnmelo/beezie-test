@@ -19,14 +19,14 @@ const mockData: Item[] = generateItems({
 
 export function RecentPullsCard() {
   return (
-    <Card>
+    <Card className="[--card-spacing:--spacing(4)] md:[--card-spacing:--spacing(6)]">
       <CardHeader>
-        <CardTitle className="text-center text-2xl font-semibold">
+        <CardTitle className="text-center text-lg font-semibold md:text-2xl">
           Recent Pulls
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="max-h-160">
+        <ScrollArea className="max-h-150 md:max-h-160">
           <div className="grid gap-2.5">
             {mockData.map((item) => (
               <RecentPullItemCard key={item.id} item={item} />
@@ -46,8 +46,8 @@ function RecentPullItemCard({ item }: RecentPullItemCardProps) {
   const formattedFMV = formatCurrency(item.fmv);
 
   return (
-    <div className="flex items-center gap-4 rounded-lg bg-secondary p-2.5">
-      <div className="relative aspect-square h-full overflow-hidden rounded-md">
+    <div className="flex items-center gap-1 rounded-lg bg-secondary p-2 md:gap-4 md:p-2.5">
+      <div className="relative aspect-square h-16 overflow-hidden rounded-md md:h-full">
         <Image
           src={item.image}
           alt=""
@@ -64,10 +64,12 @@ function RecentPullItemCard({ item }: RecentPullItemCardProps) {
           className="relative object-contain"
         />
       </div>
-      <div className="flex flex-1 items-start justify-between px-2">
+      <div className="flex flex-1 items-center justify-between gap-6 px-2">
         <div className="space-y-2">
-          <div className="text-base font-semibold">{item.name}</div>
-          <div className="text-sm font-normal text-muted-foreground">
+          <div className="text-xs font-medium md:text-base md:font-semibold">
+            {item.name}
+          </div>
+          <div className="text-xs font-normal text-muted-foreground md:text-sm">
             {item.owner.name}
           </div>
         </div>
